@@ -5,6 +5,13 @@ development-settings.json
 .DS_Store
 my-settings.json
 stage-settings.json
+.idea/cb-connect.iml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/php.xml
+.idea/vcs.xml
+.idea/workspace.xml
 db.php
 api/php/db.php
 .idea
@@ -18,3 +25,4 @@ assets
 settings.php
 api/php/src/settings.php
 api/php/ui-match/app.js
+
