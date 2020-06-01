@@ -34,6 +34,10 @@ class ModelUsers
      */
     private $lookForKeys;
     
+    /**
+     * Critical. This is the db id of the current user in the session
+     * which is used to persist state account multiple request
+     */
     private $curUserDbId;
     
     /**
@@ -55,16 +59,66 @@ class ModelUsers
             public $skillPct = 'user_type';
             public $skillMatch = 'skills_matched';
         };
+        
+        if(AppGlobals::inDebugMode()) {
+            $_SESSION['c_user_id'] = '234';
+        }
     }
     
     /**
      * The primary data I'll be using to implement the match will be against the mock users
      * @return array
      */
-    public function getMockUsers(): array {
+    public function getUsersSkills(): array {
         try {
-            $query = /** @lang */
-                "select id, first_name, skills from $this->tableMockUsers";
+            //TODO: do NOT get ALL users, write a better query to get users, this will be fine for
+            // result sets < 100,000... but will get slow with 100,001 to 1,000,000+ records
+            $query = "
+                select id, first_name, user_type, skills, looking_for
+                from $this->tableMockUsers order by id desc
+            ";
+            $statement = $this->db->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll();
+        }
+        catch(\Throwable $e) {
+            $ml = __METHOD__ . ' line: ' . __LINE__;
+            return [
+                'x-cb-error-message' => $e->getMessage(),
+                'x-cb-info' => "_> CB_CONNECT Error: Query to get mock users table failed ~$ml",
+            ];
+        }
+    }
+    
+    public function getUsersLookFor(): array {
+        try {
+            //TODO: do NOT get ALL users, write a better query to get users, this will be fine for
+            // result sets < 100,000... but will get slow with 100,001 to 1,000,000+ records
+            $query = "
+                select id, first_name, user_type, looking_for
+                from $this->tableMockUsers order by id desc
+            ";
+            $statement = $this->db->prepare($query);
+            $statement->execute();
+            return $statement->fetchAll();
+        }
+        catch(\Throwable $e) {
+            $ml = __METHOD__ . ' line: ' . __LINE__;
+            return [
+                'x-cb-error-message' => $e->getMessage(),
+                'x-cb-info' => "_> CB_CONNECT Error: Query to get mock users table failed ~$ml",
+            ];
+        }
+    }
+    
+    public function getUsersSkillsLookFor(): array {
+        try {
+            //TODO: do NOT get ALL users, write a better query to get users, this will be fine for
+            // result sets < 100,000... but will get slow with 100,001 to 1,000,000+ records
+            $query = "
+                select id, first_name, user_type, skills, looking_for
+                from $this->tableMockUsers order by id desc
+            ";
             $statement = $this->db->prepare($query);
             $statement->execute();
             return $statement->fetchAll();
@@ -118,34 +172,31 @@ class ModelUsers
      * Match implementation for the "About me" web view, the 2nd web view.
      * Will be it's own request
      *
-     * @param array $data
+     * @param array $webFormSkills
+     * @param array $dbAllUsersSkills
      *
      * @return array|string[]
      */
-    public function matchSkills(array $data): array {
+    public function matchSkills(array $webFormSkills, array $dbAllUsersSkills): array {
         try {
             // create a struct real quick to assist the matching
             // maybe make this a class property
             $ff = new SkillStruct();
-            $data = $this->sanitizeData($data);
+            $webFormSkills = $this->sanitizeData($webFormSkills);
             
-            ['userskills' => $userSkills] = $data;
+            ['userskills' => $userSkills] = $webFormSkills;
             // get number of skills user added and LOWERCASE all elems
             $userSkillParsed = array_map(function($e) { return strtolower(trim($e)); }, explode(',', $userSkills));
             asort($userSkillParsed);
             $userSkillsCount = count($userSkillParsed);
             
-            //TODO: do NOT get ALL users, write a better query to get users, this will be fine for
-            // result sets < 100,000... but will get slow with 100,001 to 1,000,000+ records
-            $allMockUsers = $this->getMockUsers();
-            
             // OUTER_LOOP_1 - O(n),  get user skills, sort, and kind of "split"
             // initial match attempt is in PHP, but SQL would be preferable eventually
-            foreach($allMockUsers as $k => $dbUser) {
+            foreach($dbAllUsersSkills as $k => $dbUser) {
                 $dbUserSkills = $dbUser['skills'];
                 if(is_null($dbUserSkills)) continue;
                 // get rid of trailing and leading spaces
-                $dbUserSkillsParsed = array_map(function($e) { return trim($e); }, explode(',', $dbUserSkills));
+                $dbUserSkillsParsed = array_map(function($e) { return strtolower(trim($e)); }, explode(',', $dbUserSkills));
                 arsort($dbUserSkillsParsed);
                 $dbUserSkillsCount = count($dbUserSkillsParsed);
                 
@@ -180,9 +231,6 @@ class ModelUsers
                 }
             } // end of OUTER_LOOP_1
             
-            // stop before return to the ctrl
-            $debug = 1;
-            
             // messy solution, will clean up later. Now return the matches
             return $ff->matches;//'x-cb-info' => '_> CB_CONNECT: Successfully matched skills.',
         }
@@ -193,7 +241,7 @@ class ModelUsers
                 'x-cb-status' => "_> CB_CONNECT: Query to match user skills failed ~$ml",
             ];
             $errExport = var_export($errArr, true);
-            $exitMessage ="Please email ( phpninja@mail.com ) and copy the following error to the email: \n\n <br><br>";
+            $exitMessage = "Please email ( phpninja@mail.com ) and copy the following error to the email: \n\n <br><br>";
             $exitMessage .= $errExport;
             //TODO: figure out a better way to handle this error!!! >:\
             exit($exitMessage);
@@ -261,25 +309,24 @@ class ModelUsers
             }
             
             $query = "
-                insert into {$this->tableMockUsers} (q_id, user_type, about, looking_for)
-                values (:qid, 'real user', :about, :lookingFor);
+                insert into {$this->tableMockUsers} (user_type, about, looking_for)
+                values ('real user', :about, :lookingFor);
             ";
             $statement = $this->db->prepare($query);
-            $statement->bindValue(':qid', $qid);
             $statement->bindValue(':about', $about);
             $statement->bindValue(':lookingFor', $lookingFor);
             $statement->execute();
             $dbInsertId = $this->db->lastInsertId();
             $this->curUserDbId = $dbInsertId;
             $_SESSION['c_user_id'] = $dbInsertId;
-           
+            
             return [
                 'x-cb-info' => '_> Successfully inserted "Looking For" data',
             ];
         }
         catch(\Throwable $e) {
             $err = $e->getMessage();
-           $ml = __METHOD__ . ' line: ' . __LINE__;
+            $ml = __METHOD__ . ' line: ' . __LINE__;
             return [
                 'x-cb-error' => "$err ~$ml",
                 'x-cb-info' => '_> Unable to insert what the user is looking for into DB',
@@ -292,6 +339,7 @@ class ModelUsers
      * ... The function that invokes this function is wrapped in a try/catch.
      *
      * @param array $data
+     *
      * @return array
      */
     public function insertSkills(array $data): array {
@@ -302,14 +350,14 @@ class ModelUsers
             $userType = 'real user';
             $userAbout = 'todo';
             $cUserId = $_SESSION['c_user_id'] ?? null;
-    
+            
             $ml = __METHOD__ . ' line: ' . __LINE__;
             if(!is_null($cUserId)) {
                 $this->log->info("_> state successfully persisted, db id = $cUserId ~$ml");
-        
+                
                 $query = "update $this->tableMockUsers set first_name = :userName, user_type = :userType,
                 skills = :userSkills, about = :userAbout where id = :id";
-        
+                
                 $statement = $this->db->prepare($query);
                 $statement->bindValue(':userName', $userName);
                 $statement->bindValue(':userType', $userType);
@@ -324,10 +372,10 @@ class ModelUsers
             else {
                 $message = "_> DID NOT persist state... Something went wrong!! ~$ml";
                 $this->log->error($message);
-                Throw new \Exception($message);
+                throw new \Exception($message);
             }
         }
-        catch (\Throwable $e) {
+        catch(\Throwable $e) {
             $err = $e->getMessage();
             $ml = __METHOD__ . ' line: ' . __LINE__;
             return [
@@ -343,11 +391,13 @@ class ModelUsers
      *
      * This data doesn't need to
      *
-     * @param array $whatUserIsLookingFor
+     * @param array $webFormIsLookingFor - what the current user entered from the web form
+     *
+     * @param array $dbAllUsersLookFor
      *
      * @return array
      */
-    public function matchLookingFor(array $whatUserIsLookingFor): array {
+    public function matchLookingFor(array $webFormIsLookingFor, array $dbAllUsersLookFor): array {
         try {
             // functions' fields
             $ff = new class() {
@@ -356,24 +406,14 @@ class ModelUsers
                 public $idKey = 'current_user_db_id';
                 public $lookForKey = 'current_user_look_for_keys';
             };
-            // what the Current user is looking for
-            $_cLookFor = new LookingForStruct($whatUserIsLookingFor);
-            $ff->currentUserInfo[$ff->idKey] = $this->curUserDbId;
+            $ff->currentUserInfo[$ff->idKey] = $_SESSION['c_user_id'];
+            $_cLookFor = new LookingForStruct($webFormIsLookingFor);
             $ff->currentUserInfo[$ff->lookForKey] = $_cLookFor->chosenKeys;
             
-            //TODO: this query needs filters and to be improved
-            $query = "
-                select id, first_name, user_type, looking_for
-                from mock_users
-            ";
-            $statement = $this->db->prepare($query);
-            $statement->execute();
-            //TODO: use another function instead of fetchAll()
-            $result = $statement->fetchAll();
-            
             // OUTER_LOOP_1, loop over all the User Records
-            foreach($result as $k => $dbUserRec) {
-                [$_dbID, $_dbFirstName, $_dbUserType, $_dbLookFor] = $dbUserRec;
+            foreach($dbAllUsersLookFor as $k => $dbUserRec) {
+                ['id' => $_dbID, 'first_name' => $_dbFirstName,
+                    'user_type' => $_dbUserType, 'looking_for' => $_dbLookFor] = $dbUserRec;
                 if(is_null($_dbLookFor)) continue;
                 
                 $lookForExplode = explode(',', $_dbLookFor);
@@ -423,12 +463,15 @@ class ModelUsers
      *      and for "Skills" to be from the web form and for an active session
      *
      * @param array $webFormSkills - The skills the user input from a web form
+     * @param array $dbUsers - The users info from the db
      * @param bool $lookForIsInDb - Is the looking for data in the db? Or from a web form/some other HTTP req?
      * @param bool $skillsInDb - Is the skills data in the db? Or from a web from/some other HTTP req?
      *
      * @return array
      */
-    public function matchAll(array $webFormSkills, bool $lookForIsInDb = true, bool $skillsInDb = false): array {
+    public function matchAll(
+        array $webFormSkills, array $dbUsers, bool $lookForIsInDb = true, bool $skillsInDb = false
+    ): array {
         if(!$lookForIsInDb) {
             //TODO: implement matching the "Looking For" data from a web form/other HTTP req
             // while concurrently matching "Skills" (either from a web form/other HTTP req OR db)
@@ -438,12 +481,92 @@ class ModelUsers
             // the "Looking For" data (either from a web form/other HTTP req OR db)
         }
         
-        /*****************************************************************************
-         ** The skills data is from a web form and looking for is an the db already **
-         ****************************************************************************/
-        $ff = new SkillStruct();
-        $data = $this->sanitizeData($webFormSkills);
+        /***************************************************************************
+         ** The skills data is from a web form and looking for is in the db already **
+         ***************************************************************************/
         
+        //TODO: integrate looping over $dbUsers, It'd be better to maintain O(n) vs O(2n)
+        $matchedSkills = $this->matchSkills($webFormSkills, $dbUsers);
+        $matchedSkillsCount = count($matchedSkills);
+        
+        // At this point, the "Looking For" questionnaire answers are in the db as a string,
+        // so convert them back to an array
+        $cUserLookingFor = $this->dbCurUserLookingForRemap($dbUsers);
+        if(is_null($cUserLookingFor)) {
+            $ml = __METHOD__ . ' line: ' . __LINE__;
+            exit("<br>Unable to find match for:<br>" . $_SESSION['c_user_id']);
+            //$this->log->error("_> Did not find the current user ~$ml");
+        }
+        
+        $matchedLookingFor = $this->matchLookingFor($cUserLookingFor, $dbUsers);
+        // ugh, when I made this data structure I inserted matches as an inner 2d array 🤦‍♂️😔
+        $matchedLookingFor_matches = $matchedLookingFor['matches'];
+        
+        $allMatches = [];
+        $keyMatchId = 'matched_user_db_id';
+        $keySkills = 'skills_matched';
+        $keySkillsStr = 'skills_matched_str';
+        $keyLookFor = 'what_matched';
+        $keyLookForStr = 'look_for_matched_str';
+        $keyName = 'first_name';
+        $lookForHashTable = [];
+        // create a hash table for look for indexed on id
+        foreach($matchedLookingFor_matches as $k => $item) {
+            $lookForHashTable[$item[$keyMatchId]] = $item;
+        }
+        // loop over matched skills
+        for($i = 0; $i < $matchedSkillsCount; $i++) {
+            $_matchedLookFor = [];
+            $cSkills = $matchedSkills[$i];
+            $_skillsId = (int)$cSkills['id'];
+            
+            // join skills and look for matches on id
+            if(!is_null($lookForHashTable[$_skillsId] ?? null)) {
+                $_matchedLookFor = $this->lookForKeyRemap($lookForHashTable[$_skillsId][$keyLookFor]);
+            }
+            
+            $_name = $cSkills[$keyName];
+            $_matchedSkills = $cSkills[$keySkills];
+            
+            $allMatches[$_skillsId][$keyMatchId] = $_skillsId;
+            $allMatches[$_skillsId][$keyName] = $_name;
+            $allMatches[$_skillsId][$keySkills] = $_matchedSkills;
+            $allMatches[$_skillsId][$keySkillsStr] = implode(', ', $_matchedSkills);
+            $allMatches[$_skillsId][$keyLookFor] = $_matchedLookFor;
+            $allMatches[$_skillsId][$keyLookForStr] = implode(', ', $_matchedLookFor);
+        }
+        
+        return [
+            'combined' => $allMatches,
+            'skills' => $matchedSkills,
+            'look_for' => $matchedLookingFor
+        ];
+    }
+    
+    private function dbCurUserLookingForRemap(array $dbUsers): ?array {
+        // find the current users' "looking for" questionnaire answers
+        foreach($dbUsers as $i => $user) {
+            if($user['id'] == $_SESSION['c_user_id']) {
+                $userLookingFor = $user['looking_for'] ?? null;
+                if(null === $userLookingFor) {
+                    $debug = 1;
+                }
+                $dbLookFor = array_map(function($e) { return trim($e); }, explode(',', $userLookingFor));
+                $lookForRemap = [];
+                // convert from a string to an array and map it to a form the match function expects
+                foreach($dbLookFor as $lookFor) {
+                    if(empty($lookFor) || stripos($lookFor, 'other') !== false) continue;
+                    $keyValue = explode(" ", $lookFor);
+                    if(!is_string($keyValue[0]) || !is_string($keyValue[1])) {
+                        // perhaps log this.
+                        continue;
+                    }
+                    $lookForRemap[trim($keyValue[0])] = (trim($keyValue[1]));
+                }
+                return array_filter($lookForRemap);
+            }
+        }
+        return null;
     }
     
     /**
@@ -480,8 +603,7 @@ class ModelUsers
         };
         
         $options = $this->setLookingForStandardizedOptions();
-        $openSourceQ = $options['openSource'];
-        $contribQ = $options['contributors'];
+        
         // elem is the users answer
         foreach($lookFor as $elem) {
             $elem = strtolower(trim($elem));
@@ -497,10 +619,12 @@ class ModelUsers
             else if($check(LookingForStruct::$mentorKey)) {
                 $lookForMap [] = LookingForStruct::$menteeKey;
             }
-            else if($check($openSourceQ)) { // FULL question
+            // $openSourceQ
+            else if($check(LookingForStruct::$openSourceKey)) { // FULL question
                 $lookForMap [] = LookingForStruct::$contribKey;
             }
-            else if($check($contribQ)) { // FULL question
+            //$contribQ
+            else if($check(LookingForStruct::$contribKey)) { // FULL question
                 $lookForMap [] = LookingForStruct::$openSourceKey;
             }
         }
