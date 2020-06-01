@@ -9,7 +9,7 @@
 <!-- tool header -->
 <md-toolbar>
     <div class="md-toolbar-tools">
-        <h2 flex md-truncate> Code Buddies Connect </h2>
+        <h2 flex md-truncate> Hack Match <b>PROTOTYPE</b> (not in beta yet)</h2>
         <md-button class="md-raised md-accent md-hue-3 cb-btn" aria-label="Learn More">
     Learn More
 </md-button>

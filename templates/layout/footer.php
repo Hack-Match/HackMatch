@@ -5,7 +5,7 @@
  * Date: 5/24/2020
  * Time: 6:21 PM
  */
-$appName = 'Code Buddies Connect';
+$appName = 'Hack Match';
 ?>
 
 <!-- Footer -->
@@ -25,8 +25,8 @@ $appName = 'Code Buddies Connect';
         <h2 class="cb-text-center"> &copy; 2020</h2>
     </div>
     <div flex="25">
-        <a href="https://codebuddies.org/">
-            <md-button class="cb-btn">Codebuddies.org</md-button>
+        <a href="/about">
+            <md-button class="cb-btn">HackMatch.io</md-button>
         </a>
         <a href="mailto:phpninja@mail.com">
             <md-button class="cb-btn">phpninja@mail.com</md-button>

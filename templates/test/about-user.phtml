@@ -32,6 +32,8 @@ include 'templates/layout/toolbar.php';
 <?= $_SESSION['c_user_ip'] ?? 'no code buddy user' ?>
 <br>
 <?= $_SESSION['c_user_id'] ?? 'no code buddy user with an id' ?>
+<br>
+<?= $data['insert'] ?? implode(' | ', $data['insert']) ?>
 
 <!------------------------------------------------------>
 <!----------------- MAIN HTML CONTENT  ----------------->

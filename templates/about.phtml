@@ -1,0 +1,98 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Julius Alvarado
+ * Date: 5/21/2020
+ * Time: 6:59 AM
+ */
+
+$appName = "Code Buddies Connect";
+
+?>
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="cbConnectApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Code Buddies connect</title>
+
+    <!-- Angular Material CSS now available via Google CDN; version 1.1.9 used here -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.css">
+    <link rel="stylesheet" href="/ui-match/styles/app.css">
+
+    <!-- ng-cloak -->
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+
+
+<body ng-controller="MatchCtrl">
+<!-- https://codebuddies.org/images/logo.svg -->
+<!--<img src="/img/cb-logo.svg" alt="cb connect" height="80px">-->
+
+
+<!-- Horizontal sort of Nav Bar -->
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2 flex md-truncate> Hack Match</h2>
+        <md-button class="md-raised md-accent md-hue-3 cb-btn" aria-label="Learn More">
+            Back to Questionnaire
+        </md-button>
+        <md-button class="md-fab md-mini md-hue-3 cb-pad5" aria-label="Favorite">
+            <ng-md-icon icon="favorite" size="30" fill="#ffffff"></ng-md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<div layout="column" layout-align="center center" class="hm-about-bg">
+
+    <h1>About Hack Match</h1>
+    <div layout="row" layout-padding layout-margin layout-align="center center">
+        <p flex="60">The primary mission of Hack Match is to: <br> <strong>Match coders with a mentor, mentee,
+                collaborator, or pair programming partner based on common interests.</strong> <br>
+            This can be for technical help, career help, or friendships</p>
+    </div>
+
+    <div layout="row" layout-padding layout-margin layout-align="center center">
+        <p flex="60">
+            Hack Match is an <a href="https://en.wikipedia.org/wiki/Open_source" target="_blank">open source project</a>
+            that started off as a fork. Unfortunately the fork was never pulled so this project was created to
+            continue the mission.
+        </p>
+    </div>
+
+    <h1>
+        Goals for this project:
+    </h1>
+
+    <div layout="row" layout-padding layout-margin>
+        <ol>
+            <li>Learn (learning is endless, so this project will be a great project to learn from).</li>
+            <li>Just have fun while <strong>Building Something Cool ^_^</strong></li>
+            <li>Collaborate with people, Coders and Noncoders, Beginners or Experienced. It's all good!</li>
+        </ol>
+    </div>
+
+    <h2>The repo was officially started as its' own independent project 5-29-2020</h2>
+    <div layout="row" layout-padding layout-margin layout-align="center center">
+        <p><a href="https://github.com/hack-match/hackmatch">Help build it! (:</a></p>
+        <p><a href="https://github.com/ideaguy3d">OS Project Maintainer</a></p>
+    </div>
+</div>
+
+
+<?php
+//<!-- Footer -->
+include('templates/layout/footer.php');
+//<!-- JavaScript -->
+include('templates/layout/js-scripts.php');
+?>
+
+</body>
+</html>
