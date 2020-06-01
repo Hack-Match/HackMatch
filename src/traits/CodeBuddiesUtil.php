@@ -53,10 +53,53 @@ trait CodeBuddiesUtil
             // 5
             'openSource' => 'An Open Source Project to contribute to',
             // 6
-            'contributors' => 'Contributors for Open Source Project',
+            'contributors' => 'Contributors for an Open Source Project',
             // 7
             'other' => 'Other (not mentioned above)',
         ];
+    }
+    
+    /**
+     * When the matches get rendered, rather than show "account, mentor", show
+     * "You are both looking for an accountability partner"
+     * "Your match wants to mentor someone"
+     * etc.
+     *
+     * @param array $keys
+     *
+     * @return array
+     */
+    public function lookForKeyRemap(array $keys): array {
+        $keyRemap = [
+            // 1
+            'account' => 'You are both looking for an accountability partner',
+            // 2
+            'coding' => 'You are both looking for a coding partner',
+            // 3
+            'mentor' => 'Your match wants to mentor someone',
+            // 4
+            'mentee' => 'Your match wants to be mentored by someone',
+            // 5
+            'openSource' => 'You match wants to contribute to an open source project',
+            // 6
+            'contributors' => 'Your match wants help building an open source project',
+        ];
+        return $this->lookRemap($keyRemap, $keys);
+    }
+    
+    /**
+     * Private helper recursive function to remap "Looking For" keys
+     *
+     * @param array $keyRemap
+     * @param array $keys
+     *
+     * @return array
+     */
+    private function lookRemap(array $keyRemap, array $keys): array {
+        if(count($keys) === 0) return $keyRemap['maps'];
+        $r = $keyRemap[array_shift($keys)] ?? null;
+        if(null !== $r) $keyRemap['maps'] [] = $r;
+        return $this->lookRemap($keyRemap, $keys);
     }
     
     /**
