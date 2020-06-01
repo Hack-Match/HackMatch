@@ -9,10 +9,8 @@ include 'templates/layout/toolbar.php';
 <!-- _SESSION TEST -->
 {{status}}
 <br>
-<?= $data['c_user_ip'] ?? 'no code buddy user' ?>
-<br>
-<?= $_SESSION['c_user_id'] ?? 'no code buddy user with an id' ?>
-<p><a href="/test/get-matched">Home</a></p>
+<?= $_SESSION['c_user_id'] ?? 'no Hack Match user with an id' ?>
+
 
 <!------------------------------------------------------>
 <!----------------- MAIN HTML CONTENT  ----------------->
@@ -24,29 +22,52 @@ include 'templates/layout/toolbar.php';
     <?php if(isset($name)) : ?>
         <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
     <?php else: ?>
-        <p><a href="http://www.codebuddies.org">Code Buddies</a></p>
+        <p><a href="/test/get-matched">Home</a></p>
     <?php endif; ?>
+
+    <h2>Matches that had the same common interests and skills</h2>
+    <table style="margin: auto">
+        <tr>
+            <th>First Name</th>
+            <th>Skills that Matched</th>
+            <th>What you are both Looking For</th>
+        </tr>
+        <?php if(isset($data)) {
+            foreach($data['combined'] as $match) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($match['first_name']) ?></td>
+                    <td><?= htmlspecialchars($match['skills_matched_str']) ?></td>
+                    <td><?= htmlspecialchars($match['look_for_matched_str']) ?></td>
+                </tr>
+            <?php }
+        } ?>
+    </table>
+
+    <br><br>
     
+    <h2>Skills that matched</h2>
     <table style="margin: auto">
         <tr>
             <th>First Name</th>
             <th>Match Score</th>
             <th>Skills that Matched</th>
-<!--            <th>What you are both Looking For</th>-->
             <th>user_type</th>
         </tr>
-    <?php if(isset($data)) {
-        foreach($data['skills'] as $match) { ?>
-            <tr>
-                <td><?= htmlspecialchars($match['first_name']) ?></td>
-                <td><?= htmlspecialchars($match['skill_pct_match']) ?></td>
-                <td><?= htmlspecialchars(implode(', ',$match['skills_matched'])) ?></td>
-                <td><?= htmlspecialchars($match['user_type']) ?></td>
-            </tr>
-        <?php }
-    } ?>
+        <?php if(isset($data)) {
+            foreach($data['skills'] as $match) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($match['first_name']) ?></td>
+                    <td><?= htmlspecialchars($match['skill_pct_match']) ?></td>
+                    <td><?= htmlspecialchars(implode(', ', $match['skills_matched'])) ?></td>
+                    <td><?= htmlspecialchars($match['user_type']) ?></td>
+                </tr>
+            <?php }
+        } ?>
     </table>
 
+    <br><br>
+    
+    <h2>Common interests that match</h2>
     <table style="margin: auto">
         <tr>
             <th>First Name</th>

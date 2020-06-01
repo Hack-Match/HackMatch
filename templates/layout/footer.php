@@ -25,13 +25,16 @@ $appName = 'Hack Match';
         <h2 class="cb-text-center"> &copy; 2020</h2>
     </div>
     <div flex="25">
+        <h2 class="cb-mtop-0 hm-pl-18">Contact</h2>
         <a href="/about">
             <md-button class="cb-btn">HackMatch.io</md-button>
         </a>
+        <br>
         <a href="mailto:phpninja@mail.com">
             <md-button class="cb-btn">phpninja@mail.com</md-button>
         </a>
-        <a href="https://github.com/ideaguy3d/cb-connect">
+        <br>
+        <a href="https://github.com/hack-match/hackmatch" target="_blank">
             <md-button class="cb-btn">GitHub repo</md-button>
         </a>
     </div>
