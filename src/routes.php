@@ -24,7 +24,7 @@ $app->get('/hello/{name}', function(Request $request, Response $response, array 
 $app->get('/test1', function(Request $request, Response $response) {
     $dbCodeBuddiesConnect = AppGlobals::isLocal() ? $this->dbLocal : $this->dbProduction;
     $usersModel = new ModelUsers($dbCodeBuddiesConnect, $this->logger);
-    $mockUsers = $usersModel->getMockUsers();
+    $mockUsers = $usersModel->getUsersSkills();
     
     // construct a table real quick
     $table = "<table><tr><th>first_name</th><th>last_name</th><th>user_type</th><th>gender</th></tr>";
@@ -98,21 +98,23 @@ $app->post('/test/get-matched/about-user', function(Request $request, Response $
         //TODO: look into maybe creating a singleton for classes that are used often
         $dbCodeBuddiesConnect = AppGlobals::isLocal() ? $this->dbLocal : $this->dbProduction;
         $usersModel = new ModelUsers($dbCodeBuddiesConnect, $this->logger);
-    
+        
         $parsedBody = $request->getParsedBody();
-        $debugData = AppGlobals::debugMatchLookingFor()['data'];
-        $data = AppGlobals::inDebugMode() ? $debugData : $parsedBody;
+        $debugMockData = AppGlobals::debugMatchLookingFor()['data'];
+        $webFormLookingFor = AppGlobals::inDebugMode() ? $debugMockData : $parsedBody;
         if(AppGlobals::$logFromRoutePhp) AppGlobals::createFileOfData($parsedBody); // true to print
         
         // persist state
         $cUser = $_SESSION['codeUser'] ?? 'debug_mode';
         
         // insert data into sql db
-        $usersModel->insertLookingFor($data, $cUser);
+        $insertResult = $usersModel->insertLookingFor($webFormLookingFor, $cUser);
         
-        // only variation so far
-        $result = $usersModel->matchLookingFor($data);
+        // get all users from db to pass to the match function
+        $dbAllUsersLookFor = $usersModel->getUsersLookFor();
+        $result = $usersModel->matchLookingFor($webFormLookingFor, $dbAllUsersLookFor);
         $result['codeUser'] = $this->codeUser;
+        $result['insert'] = $insertResult;
         
         //
         return $result;
@@ -122,7 +124,7 @@ $app->post('/test/get-matched/about-user', function(Request $request, Response $
     return $this->view->render($response, 'test/about-user.phtml', $matchedLookForData());
 });
 
-/**AS OF 5-24-2020 THIS VIEW IS NO LONGER GETTING USED NOTE ROUTE /other/**
+/**
  * _3rd View State.
  * After user submits "About User" info, they enter their email and availability
  * - At the moment, it'll do the "Match Skills" op, then render the "contact-info" view.
@@ -145,48 +147,53 @@ $app->post("/test/get-matched/show-matches", function(Request $request, Response
         // data for debugging or a POST req
         $debugData = AppGlobals::debugMatchSkills()['data'];
         $parsedBody = $request->getParsedbody();
-        $data = AppGlobals::inDebugMode() ? $debugData : $parsedBody;
+        $webFormSkills = AppGlobals::inDebugMode() ? $debugData : $parsedBody;
         if(AppGlobals::$logFromRoutePhp) AppGlobals::createFileOfData($parsedBody); // true to print
         
         //TODO: look into maybe creating a singleton for classes that are used often
         $dbCodeBuddiesConnect = AppGlobals::isLocal() ? $this->dbLocal : $this->dbProduction;
         $usersModel = new ModelUsers($dbCodeBuddiesConnect, $this->logger);
-        if(!AppGlobals::inDebugMode()) $usersModel->insertSkills($data);
-        $result = $usersModel->matchSkills($data);
+        if(!AppGlobals::inDebugMode()) $usersModel->insertSkills($webFormSkills);
+        $dbAllUsersSkills = $usersModel->getUsersSkills();
+        $result = $usersModel->matchSkills($webFormSkills, $dbAllUsersSkills);
         $f = $usersModel->userMatchFields; // field names
         
         // just get the needed fields
         $matchedUsers = [];
-        if(count($result) > 0) {
-            foreach($result as $i => $matchedUser) {
-                $matchedUserExport = var_export($matchedUser, true);
-                $this->logger->info("_> Matched User = $matchedUserExport");
-                
-                $matchedUsers[$i][$f->first] = $matchedUser[$f->first];
-                $matchedUsers[$i][$f->skillPct] = $matchedUser[$f->skillPct];
-                $matchedUsers[$i][$f->userType] = $matchedUser[$f->userType];
-        
-                $skillsMatched = $matchedUser[$f->skillMatch] ?? null;
-                $matchedUsers[$i][$f->skillMatch] = implode(", ", $skillsMatched);
-            }
-        }
-        else {
+        if(count($result) < 1) {
             $nm = 'no match';
-            $matchedUsers[0] = [$f->first => $nm, $f->userType => $nm, $f->skillPct => $nm, $f->skillMatch => $nm];
+            $matchedUsers[0] = [
+                $f->first => $nm, $f->userType => $nm, $f->skillPct => $nm, $f->skillMatch => $nm,
+            ];
         }
         
         unset($result); // free mem from buffer
         return $matchedUsers;
     };
     
-    $allMatchedData = function(){
+    $allMatchedData = function() use ($request, $response): array {
+        $debugData = AppGlobals::debugMatchSkills()['data'];
+        $parsedBody = $request->getParsedBody();
+        $webFormSkills = AppGlobals::inDebugMode() ? $debugData : $parsedBody;
         
+        $dbCodeBuddiesConnect = AppGlobals::isLocal() ? $this->dbLocal : $this->dbProduction;
+        $usersModel = new ModelUsers($dbCodeBuddiesConnect, $this->logger);
+        if(!AppGlobals::inDebugMode()) $usersModel->insertSkills($webFormSkills);
+        // selects [skills] and [looking_for] columns
+        $dbUsersSkillsLookFor = $usersModel->getUsersSkillsLookFor();
+        
+        return $usersModel->matchAll($webFormSkills, $dbUsersSkillsLookFor);
     };
     
     // render a table rather than a bunch of json
-    return $this->view->render($response, 'test/show-matches.phtml', $matchedSkillData());
+    return $this->view->render($response, 'test/show-matches.phtml', $allMatchedData());
 });
 
+$app->get("/about",
+    function(Request $request, Response $response, array $args) {
+        return $this->view->render($response, 'about.phtml', []);
+    }
+);
 
 /***********************************
  * The Routes we'll probably need *

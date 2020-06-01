@@ -15,7 +15,7 @@ Hack Matchs' mission is to help connect programmers, developers, and engineers w
 
 **The solution:**
 
-1. By getting a custom match who to reach out to, and how to reach out.
+1. By getting a custom match the person knows who to reach out to, and how to reach out.
 2. By getting matched directly with the person who is looking to help out with a project, or the person looking for help, it is known immediately that there is interest. 
 3. Hatch Match becomes the central location to find common interests and projects and results are sorted by match score, not time. 
 4. The person will get matched directly with an OS contributor that can give direction and help to get started.
