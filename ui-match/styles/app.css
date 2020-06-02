@@ -1,4 +1,16 @@
 
+body a {
+    text-decoration: none !important;
+}
+
+.hm-about-bg {
+    background-color: #ffffff;
+}
+
+.hm-pl-18 {
+    padding-left: 18px;
+}
+
 .cb-text-center {
     text-align: center;
 }
