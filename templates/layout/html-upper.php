@@ -12,7 +12,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Code Buddies connect</title>
+    <title>Hack Match, find a mentor, mentee, or code collaborator</title>
     
     <!-- Angular Material CSS now available via Google CDN; version 1.1.9 used here -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.css">
