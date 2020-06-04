@@ -210,7 +210,6 @@ class ModelUsers
                     $dbUser[$ff->keyMatchedSkill] = $dbUserSkillsSlice1;
                     $dbUser[$ff->keyMatchPct] = 100.0;
                     $ff->matches [] = $dbUser;
-                    $debug = 1;
                 }
                 // not a 100% match, that's okay
                 else {
@@ -226,8 +225,10 @@ class ModelUsers
                         $dbUser[$ff->keyMatchedSkill] = $matchedSkills;
                         $dbUser[$ff->keyMatchPct] = $pctMatch;
                         $ff->matches [] = $dbUser;
-                        $debug = 1;
                     }
+                    
+                    // for now just get 20 matches
+                    if(count($ff->matches) >= 20) break;
                 }
             } // end of OUTER_LOOP_1
             
@@ -353,7 +354,7 @@ class ModelUsers
             
             $ml = __METHOD__ . ' line: ' . __LINE__;
             if(!is_null($cUserId)) {
-                $this->log->info("_> state successfully persisted, db id = $cUserId ~$ml");
+                //$this->log->info("_> state successfully persisted, db id = $cUserId ~$ml");
                 
                 $query = "update $this->tableMockUsers set first_name = :userName, user_type = :userType,
                 skills = :userSkills, about = :userAbout where id = :id";
@@ -429,9 +430,11 @@ class ModelUsers
                         'm_looking_for' => $_dbLookFor,
                         'm_look_for_maps' => $_dbLookForMappedKeys,
                         'what_matched' => $matches,
+                        'what_matched_count' => count($matches),
+                        'match_score' => null //TODO, determine what the match score should be
                     ];
                 }
-                $debug = 1;
+                
             } // end of: OUTER_LOOP_1
             
             $debug = 1;

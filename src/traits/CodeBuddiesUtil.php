@@ -87,6 +87,41 @@ trait CodeBuddiesUtil
         return $this->lookRemap($keyRemap, $keys);
     }
     
+    public function sortAllMatches(array $matches, int $limitTo = 20): array {
+        $k_matches = 'matches';
+        $k_lookFor = 'look_for';
+        $k_skills = 'skills';
+        $k_combined = 'combined';
+        // looking for
+        $k_matchCount = 'what_matched_count';
+        // skills
+        $k_pctMatch = 'skill_pct_match';
+        
+        //TODO: don't use raw strings to ref the array keys
+        $matchesLookFor = $matchesLookForCopy = $matches[$k_lookFor][$k_matches];
+        $matchesSkills = $matchesSkillsCopy = $matches[$k_skills];
+        $matchesCombined = $matchesCombinedCopy = $matches[$k_combined];
+        
+        $sortLimit = function($set, $column) use ($limitTo) {
+            $sortBy = array_column($set, $column);
+            array_multisort($sortBy, SORT_DESC, $set);
+            if(count($set) > $limitTo) {
+                $set = array_slice($set, 0, $limitTo);
+            }
+            return $set;
+        };
+        
+        // sort the "Looking For" selected answers
+        $matches['look_for']['matches'] = $sortLimit($matchesLookFor, $k_matchCount);
+        
+        // sort the "Skills"
+        $matches['skills'] = $sortLimit($matchesSkills, $k_pctMatch);
+        
+        $debug = 1;
+        
+        return $matches;
+    }
+    
     /**
      * Private helper recursive function to remap "Looking For" keys
      *

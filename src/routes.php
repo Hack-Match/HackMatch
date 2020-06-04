@@ -178,11 +178,16 @@ $app->post("/test/get-matched/show-matches", function(Request $request, Response
         
         $dbCodeBuddiesConnect = AppGlobals::isLocal() ? $this->dbLocal : $this->dbProduction;
         $usersModel = new ModelUsers($dbCodeBuddiesConnect, $this->logger);
-        if(!AppGlobals::inDebugMode()) $usersModel->insertSkills($webFormSkills);
+        //if(!AppGlobals::inDebugMode())
+        $usersModel->insertSkills($webFormSkills);
         // selects [skills] and [looking_for] columns
         $dbUsersSkillsLookFor = $usersModel->getUsersSkillsLookFor();
+        $allMatched = $usersModel->matchAll($webFormSkills, $dbUsersSkillsLookFor);
+        $debug = 1;
+        // now sort and just get the top 20 matches, eventually do this in JS
+        $usersModel->sortAllMatches($allMatched);
         
-        return $usersModel->matchAll($webFormSkills, $dbUsersSkillsLookFor);
+        return [];
     };
     
     // render a table rather than a bunch of json
