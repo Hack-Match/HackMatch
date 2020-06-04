@@ -423,6 +423,7 @@ class ModelUsers
                 $matches = array_intersect($_dbLookForMappedKeys, $_cLookFor->chosenKeys);
                 $matchCount = count($matches);
                 if($matchCount > 0) {
+                    $matches = $this->lookForKeyRemap($matches);
                     $ff->matches [] = [
                         'matched_user_db_id' => (int)$_dbID,
                         'm_first_name' => $_dbFirstName,
@@ -519,14 +520,15 @@ class ModelUsers
         }
         // loop over matched skills
         for($i = 0; $i < $matchedSkillsCount; $i++) {
-            $_matchedLookFor = [];
             $cSkills = $matchedSkills[$i];
             $_skillsId = (int)$cSkills['id'];
-            
-            // join skills and look for matches on id
-            if(!is_null($lookForHashTable[$_skillsId] ?? null)) {
+            $_matchedLookFor = $lookForHashTable[$_skillsId][$keyLookFor];
+            /*
+            join skills and look for matches on id
+             if(!is_null($lookForHashTable[$_skillsId] ?? null)) {
                 $_matchedLookFor = $this->lookForKeyRemap($lookForHashTable[$_skillsId][$keyLookFor]);
             }
+            */
             
             $_name = $cSkills[$keyName];
             $_matchedSkills = $cSkills[$keySkills];

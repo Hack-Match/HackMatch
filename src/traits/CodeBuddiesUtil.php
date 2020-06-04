@@ -97,10 +97,9 @@ trait CodeBuddiesUtil
         // skills
         $k_pctMatch = 'skill_pct_match';
         
-        //TODO: don't use raw strings to ref the array keys
         $matchesLookFor = $matchesLookForCopy = $matches[$k_lookFor][$k_matches];
         $matchesSkills = $matchesSkillsCopy = $matches[$k_skills];
-        $matchesCombined = $matchesCombinedCopy = $matches[$k_combined];
+        //$matchesCombined = $matchesCombinedCopy = $matches[$k_combined];
         
         $sortLimit = function($set, $column) use ($limitTo) {
             $sortBy = array_column($set, $column);

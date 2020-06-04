@@ -184,10 +184,9 @@ $app->post("/test/get-matched/show-matches", function(Request $request, Response
         $dbUsersSkillsLookFor = $usersModel->getUsersSkillsLookFor();
         $allMatched = $usersModel->matchAll($webFormSkills, $dbUsersSkillsLookFor);
         $debug = 1;
-        // now sort and just get the top 20 matches, eventually do this in JS
-        $usersModel->sortAllMatches($allMatched);
         
-        return [];
+        // now sort and just get the top 20 matches, eventually do this in JS
+        return $usersModel->sortAllMatches($allMatched);
     };
     
     // render a table rather than a bunch of json
