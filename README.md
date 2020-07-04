@@ -1,35 +1,58 @@
 # Hack Match
 
-## What is it? 
+HackMatch.io is an open source platform to Match coders with a mentor, mentee, collaborator, or pair programming partner based on common interests. This can be for technical help, career help, business ventures, or friendships.
 
-Hack Matchs' mission is to help connect programmers, developers, and engineers who can _help each other_ become better at whatever they're both intested in. Matches made on the platform allows people to reach out to each other and use platforms like `codebuddies`, `slack`, `devcord`, `glitch`, `codepen`, `stackblitz`, `google hangouts`, `email` or other communication and collaboration platform to schedule remote code pairing sessions, talk, or feel less alone/be productive while working on something together. 
+## The Mission & Goal: 
 
-**The problem:**
+Hack Matchs' mission is to help connect programmers, developers, and engineers who can _help each other_ become better at whatever they're both intested in. Matches made on the platform allow people to reach out to each other and use platforms like `codebuddies`, `slack`, `devcord`, `glitch`, `codepen`, `stackblitz`, `google hangouts`, `email` or other communication platforms to schedule remote code pairing sessions, talk, or feel less alone and be productive while working on something together. 
 
-1. Many people are intimidated by communication and collaboration platforms, are too shy, or don't know how to reach out.
-2. When they join a platform, they see that a channel they're interested in looks quiet, feel discouraged, and leave. Or they try to start a project and not many people show interest in helping out, so they get discouraged and give up. 
-3. People may miss a post someone else shared a while back, or on a different platform, about a project or common interest that would have been a good match. 
-4. A project they're interested in looks too advanced and they don't know how they would even start to help... or even where to get started... or they are unsure and lack the confidence to try.  
-5. ***It can be difficult to find other people who have similar interests that would be a good match***
-6. It is very easy to slack off, procrastinate, get distracted, and lose interest and motivation. 
 
-**The solution:**
+# **The problems && solutions:**
 
-1. By getting a custom match the person knows who to reach out to, and how to reach out.
-2. By getting matched directly with the person who is looking to help out with a project, or the person looking for help, it is known immediately that there is interest. 
-3. Hatch Match becomes the central location to find common interests and projects and results are sorted by match score, not time. 
-4. The person will get matched directly with an OS contributor that can give direction and help to get started.
-5. The core problem this platform solves. As it grows the matching will get better and better. 
-6. Get matched with someone willing to help with motivation.   
+
+#### Problem Solution 1:
+- **Problem**, Many people are intimidated by communication and collaboration platforms, are too shy, or don't know how to reach out.
+
+- **Solution**, By getting a custom match the person knows who to reach out to, and how to reach out.
+
+#### Problem Solution 2:
+- **Problem**, When they join a platform, they see that a channel they're interested in looks quiet, feel discouraged, and leave. Or they try to start a project and not many people show interest in helping out, so they get discouraged and give up. 
+
+- **Solution**, By getting matched directly with the person who is looking to help out with a project, or the person looking for help, it is known immediately that there is interest. 
+
+
+#### Problem Solution 3:
+- **Problem**, People may miss a post someone else shared a while back, or on a different platform, about a project or common interest that would have been a good match. 
+
+- **Solution**, Hatch Match becomes the central location to find common interests and projects and results are sorted by match score, not time. 
+
+
+#### Problem Solution 4:
+- **Problem**, A project they're interested in looks too advanced and they don't know how they would even start to help... or even where to get started... or they are unsure and lack the confidence to try.  
+
+- **Solution**, The person will get matched directly with an OS contributor that can give direction and help to get started.
+
+
+#### Problem Solution 5:
+- **Problem**, It can be difficult to find other people who have similar interests that would be a good match
+
+- **Solution**, The core problem this platform solves. As it grows the matching will get better and better. 
+
+
+#### Problem Solution 6:
+- **Problem**, It is very easy to slack off, procrastinate, get distracted, and lose interest and motivation. 
+
+- **Solution**, Get matched with someone willing to help with motivation.   
 
 
 ## How to contribute
 
 1. Just email phpninja@mail.com, or make a pull request. 
 
-Tips:
+> Tip: If you need help or would like to pair on an issue, just reach out.
 
-- If you need help or would like to pair on an issue, just reach out.
+
+# Other Information
 
 Feel free to file new issues. We're looking for design, UX, and code (any lanugage) help.
 
