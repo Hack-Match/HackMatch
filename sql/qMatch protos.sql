@@ -69,13 +69,13 @@ delete from mock_users where id < 233;
 
 
 CREATE TABLE `mock_users` (
+  `id` int(11) NOT NULL,
   `first_name` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
   `last_name` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
   `user_type` varchar(9) DEFAULT NULL,
   `gender` varchar(6) DEFAULT NULL,
   `skills` varchar(200) DEFAULT NULL,
   `q_id` int(11) DEFAULT NULL,
-  `id` int(11) NOT NULL,
   `about` varchar(1000) DEFAULT NULL,
   `time_added` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
