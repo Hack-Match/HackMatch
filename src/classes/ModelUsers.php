@@ -27,7 +27,7 @@ class ModelUsers
     /**
      * @var string
      */
-    private $tableMockUsers = 'mock_users';
+    private $tableTestUsers = 'test_users';
     
     /**
      * @var array
@@ -75,7 +75,7 @@ class ModelUsers
             // result sets < 100,000... but will get slow with 100,001 to 1,000,000+ records
             $query = "
                 select id, first_name, user_type, skills, looking_for
-                from $this->tableMockUsers order by id desc
+                from $this->tableTestUsers order by id desc
             ";
             $statement = $this->db->prepare($query);
             $statement->execute();
@@ -96,7 +96,7 @@ class ModelUsers
             // result sets < 100,000... but will get slow with 100,001 to 1,000,000+ records
             $query = "
                 select id, first_name, user_type, looking_for
-                from $this->tableMockUsers order by id desc
+                from $this->tableTestUsers order by id desc
             ";
             $statement = $this->db->prepare($query);
             $statement->execute();
@@ -117,7 +117,7 @@ class ModelUsers
             // result sets < 100,000... but will get slow with 100,001 to 1,000,000+ records
             $query = "
                 select id, first_name, user_type, skills, looking_for
-                from $this->tableMockUsers order by id desc
+                from $this->tableTestUsers order by id desc
             ";
             $statement = $this->db->prepare($query);
             $statement->execute();
@@ -140,7 +140,7 @@ class ModelUsers
         try {
             //TODO: L200, dry this code
             $query = /** @lang */
-                "select q_id from $this->tableMockUsers";
+                "select q_id from $this->tableTestUsers";
             $statement = $this->db->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
@@ -152,7 +152,7 @@ class ModelUsers
                 $randomSkills = $this->createRandomSkills(rand(2, 10));
                 $randomSkillsImplode = implode(", ", $randomSkills);
                 $q_id = (int)$q_id['q_id'];
-                $query = sprintf($queryFormat, $this->tableMockUsers, $randomSkillsImplode, $q_id);
+                $query = sprintf($queryFormat, $this->tableTestUsers, $randomSkillsImplode, $q_id);
                 $statement = $this->db->prepare($query);
                 $statement->execute();
             }
@@ -259,13 +259,13 @@ class ModelUsers
         try {
             //TODO: L200, dry this code
             $query = /** @lang */
-                "select id from $this->tableMockUsers";
+                "select id from $this->tableTestUsers";
             $statement = $this->db->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
             
             $query = /** @lang */
-                "update $this->tableMockUsers set looking_for = :lookingFor where id = :id";
+                "update $this->tableTestUsers set looking_for = :lookingFor where id = :id";
             foreach($result as $i => $id) {
                 $randomLookingFor = $this->createRandomLookingFor(4);
                 $randLookingImplode = implode(", ", $randomLookingFor);
@@ -310,7 +310,7 @@ class ModelUsers
             }
             
             $query = "
-                insert into {$this->tableMockUsers} (user_type, about, looking_for)
+                insert into {$this->tableTestUsers} (user_type, about, looking_for)
                 values ('real user', :about, :lookingFor);
             ";
             $statement = $this->db->prepare($query);
@@ -356,7 +356,7 @@ class ModelUsers
             if(!is_null($cUserId)) {
                 //$this->log->info("_> state successfully persisted, db id = $cUserId ~$ml");
                 
-                $query = "update $this->tableMockUsers set first_name = :userName, user_type = :userType,
+                $query = "update $this->tableTestUsers set first_name = :userName, user_type = :userType,
                 skills = :userSkills, about = :userAbout where id = :id";
                 
                 $statement = $this->db->prepare($query);

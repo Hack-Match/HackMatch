@@ -7,7 +7,7 @@ use CodeBuddies\AppGlobals;
 use CodeBuddies\ModelUsers;
 
 if(AppGlobals::inDebugMode()) {
-    echo "\n <br> [ CODE BUDDIES CONNECT IN DEBUG MODE ] <br> \n";
+    echo "\n <br> [ HACK MATCH IN DEBUG MODE ] <br> \n";
     // ?add-random-looking-for=true
     $_SERVER['REQUEST_URI'] = '/test/get-matched/show-matches';
     $_SERVER['REQUEST_METHOD'] = 'POST';
@@ -193,8 +193,7 @@ $app->post("/test/get-matched/show-matches", function(Request $request, Response
     return $this->view->render($response, 'test/show-matches.phtml', $allMatchedData());
 });
 
-$app->get("/about",
-    function(Request $request, Response $response, array $args) {
+$app->get("/about", function(Request $request, Response $response, array $args) {
         return $this->view->render($response, 'about.phtml', []);
     }
 );

@@ -20,5 +20,6 @@
   RewriteEngine on
   RewriteBase /.htaccess
   RewriteCond %{REQUEST_FILENAME} !-f
+  # for local development
   RewriteRule ^ /index.php [QSA,L]
 </IfModule>

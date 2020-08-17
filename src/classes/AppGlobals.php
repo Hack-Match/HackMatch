@@ -29,7 +29,7 @@ class AppGlobals
     public static function isLocal(): bool {
         $serverName = $_SERVER['SERVER_NAME'] ?? null;
         // if app is not in CLI mode or server name is both not null and equal to local ip
-        return (PHP_SAPI == 'cli' || (!is_null($serverName) && $serverName == '10.0.0.210'));
+        return (PHP_SAPI == 'cli' || (!is_null($serverName) && $serverName == 'localhost'));
     }
     
     /**
