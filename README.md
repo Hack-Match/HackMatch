@@ -1,10 +1,10 @@
 # Hack Match
 
-HackMatch.io is an open source platform to Match coders with a mentor, mentee, collaborator, or pair programming partner based on common interests. This can be for technical help, career help, business ventures, or friendships.
+**HackMatch.io** is an open source **cloud app** to Match coders with a mentor, mentee, collaborator, or pair programming partner based on common interests. This can be for technical help, career help, business ventures, or friendships.
 
 ## The Mission & Goal: 
 
-Hack Matchs' mission is to help connect programmers, developers, and engineers who can _help each other_ become better at whatever they're both intested in. Matches made on the platform allow people to reach out to each other and use platforms like `codebuddies`, `slack`, `devcord`, `glitch`, `codepen`, `stackblitz`, `google hangouts`, `email` or other communication platforms to schedule remote code pairing sessions, talk, or feel less alone and be productive while working on something together. 
+Hack Matchs' mission is to help connect programmers, developers, and engineers who can _help each other_ become better at whatever they're both intested in. Matches made on this cloud app allow people to reach out to each other and use platforms like `codebuddies`, `slack`, `devcord`, `glitch`, `codepen`, `stackblitz`, `google hangouts`, `email` or other communication platforms to schedule remote code pairing sessions, talk, or feel less alone and be productive while working on something together. 
 
 
 # **The problems && solutions:**
@@ -36,7 +36,7 @@ Hack Matchs' mission is to help connect programmers, developers, and engineers w
 #### Problem Solution 5:
 - **Problem**, It can be difficult to find other people who have similar interests that would be a good match
 
-- **Solution**, The core problem this platform solves. As it grows the matching will get better and better. 
+- **Solution**, The core problem this cloud app solves. As it grows the matching will get better and better. 
 
 
 #### Problem Solution 6:
