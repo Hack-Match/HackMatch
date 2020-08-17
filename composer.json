@@ -13,6 +13,6 @@
     "autoload": {
         "psr-4": {
             "CodeBuddies\\": ["src/classes", "src/interface", "src/traits", "src/structs"]
-        }
+            }
     }
 }

@@ -9,18 +9,15 @@ declare(strict_types=1);
 
 namespace CodeBuddies;
 
-
+/**
+ * Class AppGlobals
+ * @package HackMatch
+ */
 class AppGlobals
 {
-    /**
-     * @var bool
-     */
-    public static $logFromRoutePhp = false;
+    public static bool $logFromRoutePhp = false;
     
-    /**
-     * @var bool
-     */
-    public static $logFromModelUsersPhp = false;
+    public static bool $logFromUsers = false;
     
     /**
      * Determine if app is in local or remote environment

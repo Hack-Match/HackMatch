@@ -1,13 +1,18 @@
-<?php
+<?php declare(strict_types=1);
+/**
+ * The dependency injection container makes each object a singleton
+ */
 
 use CodeBuddies\AppGlobals;
+use Slim\Views\PhpRenderer;
 
 $container = $app->getContainer();
 
 // view renderer
-$container['view'] = function($c) {
-    return new \Slim\Views\PhpRenderer('templates/');
-};
+$container['view'] = fn($c) => new PhpRenderer('templates/');
+
+// hack match user
+$container['codeUser'] = fn($c) => $c['settings']['codeUser'];
 
 // monolog
 $container['logger'] = function($c) {
@@ -16,11 +21,6 @@ $container['logger'] = function($c) {
     $logger->pushProcessor(new Monolog\Processor\UidProcessor());
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path']));
     return $logger;
-};
-
-// code buddies user
-$container['codeUser'] = function($c) {
-    return $c['settings']['codeUser'];
 };
 
 // local db
