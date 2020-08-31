@@ -34,10 +34,7 @@ class AppGlobals
      */
     public static function inDebugMode(): bool {
         $getDebug = $_GET['debug'] ?? null;
-        if(PHP_SAPI == 'cli' || (!is_null($getDebug) && $getDebug == 'true')) {
-            return true;
-        }
-        
+        if(PHP_SAPI == 'cli' || (!is_null($getDebug) && $getDebug == 'true')) return true;
         return false;
     }
     
