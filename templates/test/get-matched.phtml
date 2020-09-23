@@ -34,11 +34,11 @@ include 'templates/layout/toolbar.php';
 <!------------------------------------------------------>
 <!----------------- MAIN HTML CONTENT  ----------------->
 <!------------------------------------------------------>
-<div layout="row" layout-align="center center">
+<div data-layout="row" data-layout-align="center center">
     <!-- LEFT side -->
-    <div layout-padding flex="15">
+    <div data-layout-padding data-flex="15">
         <!-- icon looking -->
-        <div layout="row" layout-align="center center">
+        <div data-layout="row" data-layout-align="center center">
             <ng-md-icon icon="nature_people" style="fill: forestgreen" size="36"></ng-md-icon>
             <h1>&nbsp; Looking</h1>
         </div>
@@ -147,7 +147,7 @@ include 'templates/layout/toolbar.php';
 //<!-- Footer -->
 include('templates/layout/footer.php');
 //<!-- JavaScript -->
-include('templates/layout/js-scripts.php');
+include('templates/layout/html-lower.php');
 ?>
 
 </body>
