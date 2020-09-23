@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<?php
+include 'templates/layout/html-upper.php';
+//<!-- Horizontal sort of Nav Bar -->
+include 'templates/layout/toolbar.php';
+?>
+
+<!-- _SESSION TEST -->
+{{status}}
+<br>
+<?= $_SESSION['c_user_id'] ?? 'no Hack Match user with an id' ?>
+
+
+<!------------------------------------------------------>
+<!----------------- MAIN HTML CONTENT  ----------------->
+<!------------------------------------------------------>
+<div class="landing">
+    <h1 class="cb-text-center">Your Matches</h1>
+    <h4 class="cb-text-center">
+        Click on their profiles to learn more! ^_^ &nbsp; &nbsp;
+        <?php if(isset($name)) : ?>
+            Hello <?= htmlspecialchars($name); ?>!
+        <?php else: ?>
+           <a href="/test/get-matched">Home</a>
+        <?php endif; ?>
+    </h4>
+    
+    
+   
+    <h2 class="cb-text-center">Matches with common interests and skills</h2>
+    <!-- PHP DATA OUTPUT LOOP -->
+    <md-content md-padding md-margin layout-xs="column" layout="row" layout-wrap>
+        <?php if(isset($data)) {
+            foreach($data['combined'] as $match) { ?>
+                <!-- Flex Container -->
+                <div flex-xs flex-gt-xs="25">
+                    <!-- Material Design Card -->
+                    <md-card>
+                        <!-- PHP: Avatar Header -->
+                        <md-card-header>
+                            <md-card-avatar>
+                                <img class="md-user-avatar" ng-src="{{s_avatarImg}}">
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title"><?= htmlspecialchars($match['first_name']) ?></span>
+                                <span class="md-subhead">match</span>
+                            </md-card-header-text>
+                        </md-card-header>
+
+                        <!-- Hero Image, one day it should be an img the matched user uploaded -->
+                        <img ng-src="{{s_imgPath}}" class="md-card-image" alt="Washed Out">
+
+                        <!-- The Card Title -->
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Skill & Interest Match</span>
+                                <span class="md-subhead">
+                                    Future AI generated summary <ng-md-icon icon="rowing"></ng-md-icon>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+
+                        <!-- Action Buttons -->
+                        <md-card-actions layout="row" layout-align="start center">
+                            <!-- <md-button>Profile</md-button> -->
+                            <md-button>More Info</md-button>
+                            <md-card-icon-actions>
+                                <md-button class="md-icon-button" aria-label="Favorite">
+                                    <md-icon md-svg-icon="/img/icons/favorite.svg"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Share">
+                                    <md-icon md-svg-icon="/img/icons/baseline-share-24px.svg"></md-icon>
+                                </md-button>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+
+                        <!-- PHP: Card Content, more of the match info can go here -->
+                        <md-card-content>
+                            <p><b>Skills that Matched</b></p>
+                            <p><?= htmlspecialchars($match['skills_matched_str']) ?></p>
+                            <p><b>Common Interests</b></p>
+                            <p><?= htmlspecialchars($match['look_for_matched_str']) ?></p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            <?php }
+        } ?>
+    </md-content>
+
+    <br><br>
+
+    <h2 class="cb-text-center">Skills that matched</h2>
+    <!-- PHP DATA OUTPUT LOOP -->
+    <md-content md-padding md-margin layout-xs="column" layout="row" layout-wrap>
+        <?php if(isset($data)) {
+            foreach($data['skills'] as $match) { ?>
+                <!-- Flex Container -->
+                <div flex-xs flex-gt-xs="25">
+                    <!-- Material Design Card -->
+                    <md-card>
+                        <!-- PHP: Avatar Header -->
+                        <md-card-header>
+                            <md-card-avatar>
+                                <img class="md-user-avatar" ng-src="{{s_avatarImg}}">
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title"><?= htmlspecialchars($match['first_name']) ?></span>
+                                <span class="md-subhead">match</span>
+                            </md-card-header-text>
+                        </md-card-header>
+
+                        <!-- Hero Image, one day it should be an img the matched user uploaded -->
+                        <img ng-src="{{s_imgPath}}" class="md-card-image" alt="Washed Out">
+
+                        <!-- The Card Title -->
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Skills Match</span>
+                                <span class="md-subhead">
+                                    Future AI generated summary <ng-md-icon icon="rowing"></ng-md-icon>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+
+                        <!-- Action Buttons -->
+                        <md-card-actions layout="row" layout-align="start center">
+                            <!-- <md-button>Profile</md-button> -->
+                            <md-button>More Info</md-button>
+                            <md-card-icon-actions>
+                                <md-button class="md-icon-button" aria-label="Favorite">
+                                    <md-icon md-svg-icon="/img/icons/favorite.svg"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Share">
+                                    <md-icon md-svg-icon="/img/icons/baseline-share-24px.svg"></md-icon>
+                                </md-button>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+
+                        <!-- PHP: Card Content, more of the match info can go here -->
+                        <md-card-content>
+                            <p><b>Match Score: </b> <?= htmlspecialchars($match['skill_pct_match']) ?></p>
+                            
+                            <p><b>Skills that Matched:</b></p>
+                            <p><?= htmlspecialchars(implode(', ', $match['skills_matched'])) ?></p>
+                            
+                            <p><b>User Type: </b><?= htmlspecialchars($match['user_type']) ?></p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            <?php }
+        } ?>
+    </md-content>
+
+    <br><br>
+
+    <h2 class="cb-text-center">Common interests that match</h2>
+    <!-- PHP DATA OUTPUT LOOP -->
+    <md-content md-padding md-margin layout-xs="column" layout="row" layout-wrap>
+        <?php if(isset($data)) {
+            foreach($data['look_for']['matches'] as $match) { ?>
+                <!-- Flex Container -->
+                <div flex-xs flex-gt-xs="25">
+                    <!-- Material Design Card -->
+                    <md-card>
+                        <!-- PHP: Avatar Header -->
+                        <md-card-header>
+                            <md-card-avatar>
+                                <img class="md-user-avatar" ng-src="{{s_avatarImg}}">
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title"><?= htmlspecialchars($match['m_first_name']) ?></span>
+                                <span class="md-subhead">match</span>
+                            </md-card-header-text>
+                        </md-card-header>
+
+                        <!-- Hero Image, one day it should be an img the matched user uploaded -->
+                        <img ng-src="{{s_imgPath}}" class="md-card-image" alt="Washed Out">
+
+                        <!-- The Card Title -->
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Common Interests Match</span>
+                                <span class="md-subhead">
+                                    Future AI generated summary <ng-md-icon icon="rowing"></ng-md-icon>
+                                </span>
+                            </md-card-title-text>
+                        </md-card-title>
+
+                        <!-- Action Buttons -->
+                        <md-card-actions layout="row" layout-align="start center">
+                            <!-- <md-button>Profile</md-button> -->
+                            <md-button>More Info</md-button>
+                            <md-card-icon-actions>
+                                <md-button class="md-icon-button" aria-label="Favorite">
+                                    <md-icon md-svg-icon="/img/icons/favorite.svg"></md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Share">
+                                    <md-icon md-svg-icon="/img/icons/baseline-share-24px.svg"></md-icon>
+                                </md-button>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+
+                        <!-- PHP: Card Content, more of the match info can go here -->
+                        <md-card-content>
+                            <p><b>Common Interests:</b></p>
+                            <p><?= htmlspecialchars(implode(', ', $match['what_matched'])) ?></p>
+
+                            <p><b>User Type: </b><?= htmlspecialchars($match['m_user_type']) ?></p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            <?php }
+        } ?>
+    </md-content>
+</div>
+
+<?php
+//<!-- Footer -->
+include('templates/layout/footer.php');
+//<!-- JavaScript -->
+include('templates/layout/html-lower.php');
+?>
+
+</body>
+</html>
