@@ -1,12 +1,19 @@
 <?php declare(strict_types=1);
+
 /**
- * The dependency injection container makes each object a singleton
+ * The dependency injection container makes each object a Singleton
  */
 
 use CodeBuddies\AppGlobals;
 use Slim\Views\PhpRenderer;
 
 $container = $app->getContainer();
+
+$container['julius_portfolio_app_example_code_base_path'] = 'src/zce';
+
+
+
+$container['topics'] = new CodeBuddies\TopicsStruct();
 
 // view renderer
 $container['view'] = fn($c) => new PhpRenderer('templates/');
