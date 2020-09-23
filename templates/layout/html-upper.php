@@ -7,7 +7,7 @@
  */
 ?>
 
-<html lang="en" data-ng-app="cbConnectApp">
+<html lang="en" data-ng-app="hackMatchCloudApp">
 
 <head>
     <meta charset="UTF-8">
