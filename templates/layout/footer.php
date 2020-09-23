@@ -12,7 +12,7 @@ $appName = 'Hack Match';
 <footer layout="row" layout-padding layout-margin layout-align="center start">
     <div flex="25">
         <p>Get matched with a mentor, mentee, collaborator, or pair programming partner.</p>
-        
+
         <div layout="row" layout-align="center center" layout-margin>
             <p><b>Built with</b></p>
             <a href="https://www.php.net/manual/en/intro-whatcando.php" target="_blank">
