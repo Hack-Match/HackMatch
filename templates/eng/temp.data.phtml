@@ -1,0 +1,34 @@
+<?php include 'templates/layout/html-upper-jh.phtml'; ?>
+
+    <div data-layout="column" data-layout-align="center center" class="ja-topic-hero">
+        <h2>Examples of <i>Data Types, Formats, Services, Dates and Time</i></h2>
+        <p>
+            Based on my studies, practice, & <b>work experience</b> <br>
+            <small>( ⚠ = In-progress,  🏃‍♂️ = Quick Example,  ✅ = Thorough Example )</small>
+        </p>
+    </div>
+
+    <!-- AngularJS Dynamic Tabs -->
+    <div ng-controller="dataCtrl" layout="column" ng-cloak class="jaDynamicTabs">
+        <md-content class="md-padding">
+            <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom md-autoselect md-swipe-content>
+                <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
+                    <!-- The Actual tab content -->
+                    <section class="tab{{$index%4}}" layout="column" layout-align="center center" layout-padding
+                             layout-margin ng-bind-html="tab.content">
+                    </section>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+
+    <div layout="column" layout-align="center center">
+        <h1>Data Services & Data Types/Formats</h1>
+
+        <md-content layout-padding>
+            <p>PHP is simple(keeping it simple, is what makes PHP so Powerful), it has 3 types of Data</p>
+        </md-content>
+    </div>
+
+    <br>
+<?php include 'templates/layout/html-lower-jh.phtml'; ?>
