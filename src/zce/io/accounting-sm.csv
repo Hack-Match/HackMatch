@@ -1,0 +1,50 @@
+job_id,job_name,qty,job_type,export_duedate,export_coordinator,invoice,postage_class,postage_amt,export_vend_name,sales_rep
+64755,RTECH TIPS CO 11/25/19,39149,Self Mailer,11/26/2019 0:00,Heather Lunsford,603,Standard,6509.26,"[""Denver Redstone Production""]",Contact user not set
+65705,Got Junk Nov,7136,Post Card,11/1/2019 0:00,Leslie Moores,245920,Standard,1,"[""RS W.Sac""]",Andy Cody
+73620,RTECH TIPS EAST-11/18/19,24136,Self Mailer,11/20/2019 0:00,Heather Lunsford,586,Standard,4657.47,"[""Denver Redstone Production""]",Andy Cody
+76734,Mobile Home PC 110119,1225,Post Card,11/1/2019 0:00,Lindsey Hemphill,246078,First Class Pre-Sort,330.9,"[""RS W.Sac""]",Flip Talk
+76735,Mobile Home PC 110819,1122,Post Card,11/8/2019 0:00,Lindsey Hemphill,246497,First Class Pre-Sort,296.66,"[""RS W.Sac""]",Flip Talk
+76852,Reliant Carmelo 11/8/2019,772,Letter,11/8/2019 0:00,Tori Randell,244670,First Class Pre-Sort,,"[""RS W.Sac""]",Justin Restaino
+78315,GEQ - 09695-19 - VA D6,2652,Letter,11/2/2019 0:00,Leslie Moores,245906,Standard,751.1,"[""RS W.Sac""]",Andy Cody
+78416,GEQ - 09943-19 - D6,3751,Letter,11/2/2019 0:00,Leslie Moores,246042,Standard,1062.01,"[""RS W.Sac""]",Andy Cody
+78424,GEQ 09944-19 D6,4081,Letter,11/2/2019 0:00,Leslie Moores,246108,Standard,1157.66,"[""RS W.Sac""]",Andy Cody
+78886,Remember Me Postcard,554,Post Card,11/7/2019 0:00,Heather Lunsford,246224,Standard,133.97,"[""RS W.Sac""]",Jared Phillips
+78981,RTECH RP October,654,Letter,11/29/2019 0:00,Heather Lunsford,571,Standard,152.58,"[""Denver Redstone Production""]",Andy Cody
+79044,Low Fico 2 11/7/2019,9500,Letter,11/7/2019 0:00,Tori Randell,246487,First Class Pre-Sort,3887.1,"[""RS W.Sac""]",Justin Restaino
+79429,Simplify - 09888-19,4742,Letter,11/1/2019 0:00,Leslie Moores,245265,First Class Pre-Sort,1987.54,"[""RS W.Sac""]",Andy Cody
+79491,Fairway Independent Mortgage - 10124-19 D3,2501,Letter,11/2/2019 0:00,Leslie Moores,246155,First Class Pre-Sort,1045.72,"[""Denver Redstone Production""]",Andy Cody
+79492,Fairway Independent Mortgage - 10124-19 D4,2506,Letter,11/8/2019 0:00,Leslie Moores,246352,First Class Pre-Sort,1047.63,"[""Denver Redstone Production""]",Andy Cody
+79698,Bluff City Properties Drop 1,170,Snap Pack,11/4/2019 0:00,Mika Hemphill,245457,Standard,0,"[""RS W.Sac""]",Andy Cody
+79714,RTECH PEP St Thomas Calendar mailing,4035,Print / Other,11/18/2019 0:00,Heather Lunsford,592,,734.42,"[""Denver Redstone Production""]",Andy Cody
+79768,Metzinger Holiday Card,1050,Letter,11/25/2019 0:00,Lindsey Hemphill,247379,Standard,267.43,"[""RS W.Sac""]",Andy Cody
+79824,Amloss BL WCHK,7952,Snap Pack,11/5/2019 0:00,Megan Thompson,246148,Standard,2057.5,"[""Atlanta Redstone Producton""]",Justin Restaino
+79840,AL Chksnp 111119 AM,89212,Snap Pack,11/4/2019 0:00,Megan Thompson,245743,Standard,21869.9,"[""Atlanta Redstone Producton""]",Andy Cody
+79868,Express Capital - 10142-19 D4,4973,Letter,11/6/2019 0:00,Leslie Moores,246344,Standard,1418.93,"[""RS W.Sac""]",Andy Cody
+79934,QQ New 627 Vacaville,32922,Post Card,11/5/2019 0:00,Christine Lee,245692,Standard,533.49,"[""RS W.Sac""]",Andy Cody
+79937,QQ New 216,36831,Post Card,11/8/2019 0:00,Christine Lee,245693,Standard,5996.75,"[""RS W.Sac""]",Andy Cody
+79948,AL Chksnp 111119 AT,76641,Snap Pack,11/5/2019 0:00,Megan Thompson,245744,Standard,19417.66,"[""Atlanta Redstone Producton""]",Andy Cody
+79949,AL Chksnp 111119 DT,20862,Snap Pack,11/5/2019 0:00,Megan Thompson,245779,Standard,5196.02,"[""Denver Redstone Production""]",Andy Cody
+79951,AL Chksnp 111119 CW,10828,Snap Pack,11/6/2019 0:00,Megan Thompson,245758,Standard,2736.33,"[""RS W.Sac""]",Andy Cody
+79952,AL Chksnp 111119 ATh,7925,Snap Pack,11/7/2019 0:00,Megan Thompson,245780,Standard,2028.86,"[""Atlanta Redstone Producton""]",Andy Cody
+79954,AL Chksnp 111119 AP,25160,Snap Pack,11/7/2019 0:00,Megan Thompson,245775,Standard,6238.22,"[""Atlanta Redstone Producton""]",Andy Cody
+79955,AL Chksnp 111119 DP,6637,Snap Pack,11/7/2019 0:00,Megan Thompson,245825,Standard,1631.89,"[""Denver Redstone Production""]",Andy Cody
+79958,AL Chksnp 111119 CP,10518,Snap Pack,11/7/2019 0:00,Megan Thompson,245828,Standard,2,"[""RS W.Sac""]",Andy Cody
+80043,Monte PC1 110119,4041,Post Card,11/1/2019 0:00,Lindsey Hemphill,246092,First Class Pre-Sort,1036.76,"[""RS W.Sac""]",Flip Talk
+80044,Monte PC1 110819,4044,Post Card,11/8/2019 0:00,Lindsey Hemphill,246481,First Class Pre-Sort,1044.56,"[""RS W.Sac""]",Flip Talk
+80045,Monte PC1 111519,4252,Post Card,11/15/2019 0:00,Lindsey Hemphill,246785,First Class Pre-Sort,1089.83,"[""RS W.Sac""]",Flip Talk
+80046,OC Monte PC1 112219,4154,Post Card,11/22/2019 0:00,Lindsey Hemphill,247243,First Class Pre-Sort,1065.6,"[""RS W.Sac""]",Flip Talk
+80088,FhA Spanish Drop 1  11/7/2019,4989,Letter,11/9/2019 0:00,Tori Randell,246398,Standard,1254.19,"[""RS W.Sac""]",Jared Phillips
+80090,FHA Spanish Drop 2 11/14/2019,4991,Letter,11/14/2019 0:00,Tori Randell,246732,Standard,1256.12,"[""RS W.Sac""]",Jared Phillips
+80091,FHA Spanish Drop 3 11/21/2019,4992,Letter,11/21/2019 0:00,Tori Randell,247182,Standard,1256.37,"[""RS W.Sac""]",Jared Phillips
+80092,Reliant Carmelo 11/15/2019,1251,Letter,11/15/2019 0:00,Tori Randell,246814,First Class Pre-Sort,522.92,"[""Denver Redstone Production""]",Justin Restaino
+80093,Reliant Carmelo 11/22/2019,1250,Letter,11/22/2019 0:00,Tori Randell,246815,First Class Pre-Sort,523.17,"[""Denver Redstone Production""]",Justin Restaino
+80094,Reliant Carmelo 11/29/2019,1252,Letter,11/29/2019 0:00,Tori Randell,246816,First Class Pre-Sort,524.39,"[""Denver Redstone Production""]",Justin Restaino
+80100,YCR - CitySquare Follow-Up Letter - Wave 2,83982,Letter,11/4/2019 0:00,Mika Hemphill,245746,Non-Profit,9066.88,"[""RS W.Sac""]",Andy Cody
+80101,YCR - CitySquare Follow-Up Letter NGC - Wave 2,9243,Letter,11/5/2019 0:00,Mika Hemphill,245755,Non-Profit,1239,"[""RS W.Sac""]",Andy Cody
+80103,YCR - Heartland Follow-Up Letter - Wave 2,89536,Letter,11/5/2019 0:00,Mika Hemphill,245749,Non-Profit,9719.1,"[""RS W.Sac""]",Andy Cody
+80104,YCR - Heartland Follow-Up Letter NGC - Wave 2,10008,Letter,11/4/2019 0:00,Mika Hemphill,245750,Non-Profit,1313.67,"[""RS W.Sac""]",Andy Cody
+80135,CARCHEX - 11072019 Mail File,14775,Letter,11/7/2019 0:00,Heather Lunsford,246107,Standard,3842.86,"[""Denver Redstone Production""]",Andy Cody
+80146,Supreme Lending -10274-19,6181,Post Card,11/5/2019 0:00,Leslie Moores,246335,First Class Pre-Sort,1593.28,"[""RS W.Sac""]",Andy Cody
+80153,Supreme Lending -10275-19,6181,Post Card,11/18/2019 0:00,Leslie Moores,247007,First Class Pre-Sort,1593.21,"[""RS W.Sac""]",Andy Cody
+80163,EN HW Refi ITMA 110119,3422,Letter,11/1/2019 0:00,Ray Pruitt,246088,First Class Pre-Sort,,"[""Denver Redstone Production""]",Justin Restaino
+80178,CO VA Title 14-16 RP 103019,6486,Snap Pack,11/1/2019 0:00,Lindsey Hemphill,245819,Standard,1511.76,"[""RS W.Sac""]",Bobby Caruso
