@@ -1,4 +1,3 @@
-
 body a {
     text-decoration: none !important;
 }
@@ -9,6 +8,10 @@ body a {
 
 .hm-pl-18 {
     padding-left: 18px;
+}
+
+.hm-side-form > input[type="text"] {
+    max-width: 114px;
 }
 
 .cb-text-center {
@@ -38,56 +41,116 @@ body a {
     padding: 12px;
 }
 
-/* sample demo styles */
-.checkboxdemoBasicUsage div.flex-xs {
-    min-height: 40px;
+.ja-content {
+    max-height: 500px;
+    width: 80%;
+    display: block;
+    position: relative;
+    overflow: auto;
 }
 
-.checkboxdemoBasicUsage .checkboxDemo1 div {
-    clear: both;
+.ja-topic-hero p {
+    margin-top: 0;
 }
 
-.checkboxdemoBasicUsage p {
-    padding-left: 8px;
+.ja-topic-hero h2 {
+
 }
 
-.checkboxdemoBasicUsage fieldset.standard {
-    border-style: solid;
-    border-width: 1px;
+/* AngularJS Material dynamic tabs */
+.jaDynamicTabs md-content h1:first-child {
+    margin-top: 0;
 }
 
-.checkboxdemoBasicUsage legend {
-    color: #3F51B5;
+.jaDynamicTabs md-content md-tabs .demo-tab {
+    padding: 25px;
+    text-align: center;
 }
 
-.checkboxdemoBasicUsage legend code {
-    color: #3F51B5;
-    font-weight: normal;
+.jaDynamicTabs md-content md-tabs .demo-tab > div > div {
+    padding: 25px;
+    box-sizing: border-box;
 }
 
-.checkboxdemoBasicUsage .ipsum {
-    color: saddlebrown;
+.jaDynamicTabs md-content md-tabs md-tab[disabled] {
+    opacity: 0.5;
 }
 
-.toolbardemoBasicUsage md-toolbar .md-button.md-icon-button .favorite-icon {
-    fill: #DE3641;
+.jaDynamicTabs md-content form {
+    padding-top: 0;
 }
 
-.toolbardemoBasicUsage md-toolbar md-toolbar-filler {
-    background-color: #e0e0e0;
+.jaDynamicTabs md-content form div[flex] {
+    position: relative;
 }
 
-.toolbardemoBasicUsage md-toolbar md-toolbar-filler #filler-icon {
-    fill: #4C9EF1;
+.jaDynamicTabs md-content form div[flex] h2.md-subhead {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    line-height: 35px;
+    white-space: nowrap;
 }
 
-.inputdemoErrors .inputErrorsApp {
-    min-height: 48px;
+.jaDynamicTabs md-content form md-button.add-tab {
+    margin-right: 0;
+    transform: translateY(5px);
 }
 
-.inputdemoErrors md-input-container > p {
-    font-size: 0.8em;
-    text-align: left;
+.jaDynamicTabs md-content form md-input-container {
+    padding-bottom: 0;
+}
+
+/* grid style rules */
+.ja-grid md-grid-list {
+    margin: 8px;
+}
+
+.ja-grid .blue {
+    background: #3F51B5;
+}
+
+.ja-wh100p {
     width: 100%;
+    height: 100%;
 }
 
+.ja-wh100p:hover {
+    background-color: #444444;
+}
+
+.ja-m0 {
+    margin: 0;
+}
+
+a.ja-land-md-fab {
+    width: 72px !important;
+    height: 72px !important;
+    padding-top: 10px;
+    margin-bottom: 38px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* end of css file */
