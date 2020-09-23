@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<?php
+include 'templates/layout/html-upper.php';
+//<!-- Horizontal sort of Nav Bar -->
+include 'templates/layout/toolbar.php';
+?>
+
+<!-- _SESSION TEST -->
+{{status}}
+<br>
+<?= $_SESSION['c_user_id'] ?? 'no Hack Match user with an id' ?>
+
+
+<!------------------------------------------------------>
+<!----------------- MAIN HTML CONTENT  ----------------->
+<!------------------------------------------------------>
+<div class="landing">
+    <h1>Your Matches</h1>
+    <h4>Click on their profiles to learn more! ^_^</h4>
+    
+    <?php if(isset($name)) : ?>
+        <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
+    <?php else: ?>
+        <p><a href="/test/get-matched">Home</a></p>
+    <?php endif; ?>
+
+    <h2>Matches that had the same common interests and skills</h2>
+    <table style="margin: auto">
+        <tr>
+            <th>First Name</th>
+            <th>Skills that Matched</th>
+            <th>What you are both Looking For</th>
+        </tr>
+        <?php if(isset($data)) {
+            foreach($data['combined'] as $match) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($match['first_name']) ?></td>
+                    <td><?= htmlspecialchars($match['skills_matched_str']) ?></td>
+                    <td><?= htmlspecialchars($match['look_for_matched_str']) ?></td>
+                </tr>
+            <?php }
+        } ?>
+    </table>
+
+    <br><br>
+    
+    <h2>Skills that matched</h2>
+    <table style="margin: auto">
+        <tr>
+            <th>First Name</th>
+            <th>Match Score</th>
+            <th>Skills that Matched</th>
+            <th>user_type</th>
+        </tr>
+        <?php if(isset($data)) {
+            foreach($data['skills'] as $match) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($match['first_name']) ?></td>
+                    <td><?= htmlspecialchars($match['skill_pct_match']) ?></td>
+                    <td><?= htmlspecialchars(implode(', ', $match['skills_matched'])) ?></td>
+                    <td><?= htmlspecialchars($match['user_type']) ?></td>
+                </tr>
+            <?php }
+        } ?>
+    </table>
+
+    <br><br>
+    
+    <h2>Common interests that match</h2>
+    <table style="margin: auto">
+        <tr>
+            <th>First Name</th>
+            <th>What you are both Looking For</th>
+            <th>user_type</th>
+        </tr>
+        <?php if(isset($data)) {
+            foreach($data['look_for']['matches'] as $match) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($match['m_first_name']) ?></td>
+                    <td><?= htmlspecialchars(implode(', ', $match['what_matched'])) ?></td>
+                    <td><?= htmlspecialchars($match['m_user_type']) ?></td>
+                </tr>
+            <?php }
+        } ?>
+    </table>
+</div>
+
+<?php
+//<!-- Footer -->
+include('templates/layout/footer.php');
+//<!-- JavaScript -->
+include('templates/layout/html-lower.php');
+?>
+
+</body>
+</html>
