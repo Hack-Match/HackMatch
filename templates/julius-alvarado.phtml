@@ -1,0 +1,170 @@
+<?php
+
+use CodeBuddies\TopicsStruct;
+
+$t = new TopicsStruct();
+$skills = [];
+
+foreach($t as $k1 => $v1) $skills[$k1] = ['title' => $v1->title, 'icon' => $v1->icon, 'href' => $v1->href,];
+
+$debug = 1;
+
+include 'templates/layout/html-upper-jh.phtml'; ?>
+
+    <!------------------------------------------------------>
+    <!----------------- MAIN HTML CONTENT  ----------------->
+    <!------------------------------------------------------>
+    <div data-layout="row" data-layout-align="center center">
+
+        <!-- LEFT side -->
+        <div data-layout-padding data-flex="25">
+            <h4>Hi. I'm Julius Hernandez-Alvarado.</h4>
+
+            <!-- icon about -->
+            <div data-layout="column" data-layout-align="center center">
+                <ng-md-icon icon="face" style="fill: #723d0f" size="36"></ng-md-icon>
+                <p>
+                    I'm a Senior-level Fullstack Web Engineer & Mid-level Data Engineer that uses PHP, SQL, & JS/Node
+                </p>
+            </div>
+
+            <h4>Estimated Hours of Study&Practice <br><small>(Dec'2012-Sep'2020):</small></h4>
+            <h1 class="cb-text-center cb-mtop-0">
+                14,193 hours
+                <ng-md-icon icon="check_circle" style="fill: hotpink"></ng-md-icon>
+            </h1>
+
+            <h4>Learning Abilities:</h4>
+            <h1 class="cb-text-center cb-mtop-0">
+                10 / 10
+                <ng-md-icon icon="check_circle" style="fill: hotpink"></ng-md-icon>
+            </h1>
+
+            <h4>Years of Professional Experience:</h4>
+            <h1 class="cb-text-center cb-mtop-0">
+                5 years
+                <ng-md-icon icon="check_circle" style="fill: hotpink"></ng-md-icon>
+            </h1>
+
+            <h4>Talent:</h4>
+            <h1 class="cb-text-center cb-mtop-0">
+                10 / 10
+                <ng-md-icon icon="check_circle" style="fill: hotpink"></ng-md-icon>
+            </h1>
+        </div>
+
+        <!-- RIGHT side -->
+        <div class="md-padding" data-flex="60">
+            <h1>
+                My primary tool for fullstack web & data engineering is PHP.
+                <md-button class="md-primary md-raised cb-btn"
+                           ng-click="scMatchCtrl_showModal($event)">
+                    Side Node
+                </md-button>
+            </h1>
+            <p>
+                Here are <b>Examples</b> of the classes, functions, techniques, and core features of PHP I use:
+            </p>
+
+            <div ng-cloak class="ja-grid">
+                <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1"
+                              md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
+                    
+                    <?php foreach($skills as $skill_key => $skill_value): ?>
+                        <md-grid-tile class="blue" md-colspan="2">
+                            <md-button ng-href="<?= $skill_value['href'] ?>" class="md-fab ja-land-md-fab">
+                                <ng-md-icon icon="<?= $skill_value['icon'] ?>"
+                                            style="fill: #ffffff;" size="52">
+                                </ng-md-icon>
+                            </md-button>
+                            <md-grid-tile-footer>
+                                <md-button href="<?= $skill_value['href'] ?>" class="ja-m0">
+                                    <b><?= $skill_value['title'] ?></b>
+                                </md-button>
+                            </md-grid-tile-footer>
+                        </md-grid-tile>
+                    <?php endforeach; ?>
+                </md-grid-list>
+            </div>
+
+            <br>
+
+            <p>
+                <small>
+                    ... These past couple of years I've been using mostly native PHP (no frameworks),
+                    heavy duty Computer Science, and some AngularJS to build on-premise intrAnet based data applications
+                    and automated data processing systems. I'm currently in the process of adding Laravel, React,
+                    & BigQuery(for big data) to my skill set as well.
+                </small>
+            </p>
+
+            <br>
+
+            <p>
+                <strong>
+                    I don't know every programming language, framework, and algorithm <br>
+                    ... but I can learn any programming language, framework, and algorithm.
+                </strong>
+            </p>
+        </div>
+    </div>
+
+    <br>
+
+    <div style="visibility: hidden">
+        <div class="md-dialog-container" id="ja-side-node">
+            <md-dialog layout-padding>
+                <h1>My "Portfolio Cloud App" project</h1>
+                <h3 class="cb-mtop-0">Idea vs. Reality:</h3>
+                <p>
+                    When I first imagined this project, I thought it would take about 4 days (32-48 hours of
+                    programming), but here I am, day 10 into it (64-96 hours of programming) and I am realizing I'm
+                    going to need about another 11 ish ish days to finish it.
+                    <b>And I need to start applying for jobs now.</b>
+                </p>
+                <p>When I was imagining it, I didn't realize I would run into these issues:</p>
+                <md-list>
+                    <md-list-item ng-click="scMatchCtrl_listItem($event)">
+                        <p>1. Thinking of <b>114</b> examples from scratch is really time consuming</p>
+                    </md-list-item>
+                    <md-list-item ng-click="scMatchCtrl_listItem($event)">
+                        <p>
+                            2. Keeping the examples realistic, yet simple (less than 50 lines of code), is also
+                            time consuming (I've had to delete a lot of lines of code & refactor to keep it simple)
+                        </p>
+                    </md-list-item>
+                    <br>
+                    <md-list-item ng-click="scMatchCtrl_listItem($event)">
+                        <p>
+                            3. Figuring out a system to render the code was more difficult than I thought it would be
+                        </p>&nbsp;&nbsp;
+                        <p>
+                            <small>
+                                At 1st, I was just slabbin the code on top of the template
+                                Then I started moving the code to their own files
+                                Then I started dynamically injecting the templates into AngularJS dynamic tabs. <br>
+                                Figuring that all out consumed wayyyyy more time than I imagined it would (because I
+                                didn't even think about that part while it was an idea in my mind)
+                            </small>
+                        </p>
+                    </md-list-item>
+                    <br>
+                    <md-list-item ng-click="scMatchCtrl_listItem($event)">
+                        <p>
+                            ... Sigh, then I realized it was&nbsp;<b>really</b>&nbsp;ugly
+                            & wasted time making it pretty. Damn
+                        </p>
+                    </md-list-item>
+                    <md-list-item ng-click="scMatchCtrl_listItem($event)">
+                        <p>
+                            <i>
+                                "Also, my brain forgot chunks of details here & there that it had learned a year <br>
+                                or 2 prior, So I was re-learning stuff as I was building it. Also very time-consuming"
+                            </i> &nbsp; )=
+                        </p>
+                    </md-list-item>
+                </md-list>
+            </md-dialog>
+        </div>
+    </div>
+<?php include 'templates/layout/html-lower-jh.phtml'; ?>
