@@ -1,0 +1,46 @@
+<?php include 'templates/layout/html-upper-jh.phtml'; ?>
+
+    <div data-layout="column" data-layout-align="center center" class="ja-topic-hero">
+        <h2>Examples of <i>SQL</i> & <i>Relational Database Management Systems</i></h2>
+        <p>
+            Based on my studies, practice, & <b>work experience</b> <br>
+            <small>( ⚠ = In-progress,  🏃‍♂️ = Quick Example,  ✅ = Thorough Example )</small>
+        </p>
+    </div>
+
+    <!-- AngularJS Dynamic Tabs -->
+    <div ng-controller="sqlCtrl" layout="column" ng-cloak class="jaDynamicTabs">
+        <md-content class="md-padding">
+            <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom md-autoselect md-swipe-content>
+                <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
+                    <!-- The Actual tab content -->
+                    <section class="tab{{$index%4}}" layout="column" layout-align="center center" layout-padding
+                             layout-margin ng-bind-html="tab.content">
+                    </section>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+
+    <!-- all old stuff -->
+    <br><br><br>
+
+    <div layout="column" layout-align="center center">
+        <h1>♥ SQL ❤ and Relational Database Management Systems</h1>
+
+        <md-content layout-padding>
+            <p>
+                Although I'm passionate about PHP, and enjoy programming in Unity C#...
+                It's <b>ALL</b> about the Data, and SQL (MySQL/MariaDB & SQL Server) has emerged as my
+                Favorite language to code in.
+            </p>
+            <p>
+                Look at how easy it is to do a triple INNER OUTER LEFT JOIN from the sales,
+                salesman, and products data tables:
+            </p>
+        </md-content>
+    </div>
+
+    <br>
+
+<?php include 'templates/layout/html-lower-jh.phtml'; ?>
