@@ -1,0 +1,49 @@
+<?php include 'templates/layout/html-upper-jh.phtml'; ?>
+
+    <div data-layout="column" data-layout-align="center center" class="ja-topic-hero">
+        <h2>Examples of <i>Unit Testing</i></h2>
+        <p>
+            Based on my studies, practice, & <b>work experience</b> <br>
+            <small>( ⚠ = In-progress,  🏃‍♂️ = Quick Example,  ✅ = Thorough Example )</small>
+        </p>
+    </div>
+
+    <!-- AngularJS Dynamic Tabs -->
+    <div ng-controller="testingCtrl" layout="column" ng-cloak class="jaDynamicTabs">
+        <md-content class="md-padding">
+            <md-tabs md-selected="selectedIndex" md-dynamic-height md-border-bottom md-autoselect md-swipe-content>
+                <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
+                    <!-- The Actual tab content -->
+                    <section class="tab{{$index%4}}" layout="column" layout-align="center center" layout-padding
+                             layout-margin ng-bind-html="tab.content">
+                    </section>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+
+    <!-- the old stuff -->
+    <br><br><br>
+
+    <div layout="column" layout-align="center center">
+        <h1>Unit Testing</h1>
+
+        <md-content layout-padding>
+            <p>
+                I've learned that writing software and building automated data processing systems
+                with NO tests is like driving a motorcycle with NO helmet.
+            </p>
+            <p>
+                Even though the test code can get larger than the src code, and it takes longer
+                to deliver completed projects to company stakeholders, I always try my hardest
+                to get at least some tests written.
+            </p>
+            <p>
+                1st, let's start off with some Data Providers that are edge case's to see if
+                it breaks my software:
+            </p>
+        </md-content>
+    </div>
+
+    <br>
+<?php include 'templates/layout/html-lower-jh.phtml'; ?>
