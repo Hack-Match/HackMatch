@@ -1,0 +1,506 @@
+<!-- Footer -->
+<footer layout="row" layout-padding layout-margin layout-align="center start">
+    <div flex="25">
+        <p>
+            Data Engineer. <br>
+            Software Developer. <br>
+            Full Stack Web Engineer.
+        </p>
+
+        <div layout="row" layout-align="center center" layout-margin>
+            <p><b>Built with</b></p>
+            <a href="https://www.php.net/manual/en/intro-whatcando.php" target="_blank">
+                <md-button class="cb-btn md-raised md-hue-3">PHP 7.4</md-button>
+            </a>
+        </div>
+    </div>
+    <div flex="50">
+        <h2 class="cb-text-center cb-mtop-0">
+            Julius Alvarado's
+            <i> cloud app</i>
+            <ng-md-icon icon="cloud" style="fill: skyblue"></ng-md-icon>
+        </h2>
+        <h4 class="cb-text-center"> &copy; 2020</h4>
+        <p style="text-align: center">
+            <small>Programming languages are <u>just</u> hammers.</small><br>
+            <small>What matters, is <u>who</u> is welding the hammer.</small>
+        </p>
+    </div>
+    <div flex="25">
+        <h2 class="cb-mtop-0 hm-pl-18">Contact</h2>
+        <a href="/about">
+            <md-button class="cb-btn">HackMatch.io</md-button>
+        </a>
+        <br>
+        <a href="mailto:j.alvarado@engineer.com">
+            <md-button class="cb-btn">j.alvarado@engineer.com</md-button>
+        </a>
+        <br>
+        <a href="https://github.com/ideaguy3d" target="_blank">
+            <md-button class="cb-btn">GitHub</md-button>
+        </a>
+    </div>
+</footer>
+
+<!--------------------------------------------------
+------------ Content Delivery Networks ------------
+----------------------------------------------------
+- 1 -
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"
+"/ui-match/modules/ng.js"
+
+- 2 -
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"
+"/ui-match/modules/ng-animate.js"
+
+- 3 -
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"
+"/ui-match/modules/ng-aria.js"
+
+- 4 -
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"
+"/ui-match/modules/ng-messages.js"
+
+- 5 -
+"//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"
+"/ui-match/modules/ngmd-icons.js"
+
+- 6 -
+"https://ajax.googleapis.com/ajax/libs/angular_material/1.1.9/angular-material.min.js"
+"/ui-match/modules/ngmd.js"
+-->
+
+<!-- AngularJS Core -->
+<script src="/ui-match/modules/ng.js"></script>
+<script src="/ui-match/modules/ng-animate.js"></script>
+<script src="/ui-match/modules/ng-aria.js"></script>
+<script src="/ui-match/modules/ng-messages.js"></script>
+<script src="/ui-match/modules/ng-sanitize.js"></script>
+
+<!-- AngularJS Material v1.1.9 -->
+<script src="/ui-match/modules/ngmd.js"></script>
+<script src="/ui-match/modules/ngmd-icons.js"></script>
+
+<!-- HackMatch.io AngularJS 1.7 app -->
+<script src="/ui-match/app.js"></script>
+
+<!-- JuliusPHP code output -->
+<script>
+    (function () {
+        'use strict';
+        let app = angular.module('hackMatchCloudApp');
+        app.controller('ioCtrl', InputOutputCtrl)
+            .controller('arraysCtrl', ArraysCtrl)
+            .controller('basicsCtrl', BasicsCtrl)
+            .controller('dataCtrl', DataCtrl)
+            .controller('errorsCtrl', ErrorsCtrl)
+            .controller('functionsCtrl', FunctionsCtrl)
+            .controller('oopCtrl', OOPCtrl)
+            .controller('jaSecurityCtrl', SecurityCtrl)
+            .controller('sqlCtrl', SqlCtrl)
+            .controller('stringsCtrl', StringsCtrl)
+            .controller('testingCtrl', TestingCtrl)
+            .controller('webCtrl', WebCtrl);
+
+        // 90% done
+        // topics done, files done, struct done, bindings done
+        function InputOutputCtrl($scope, $log) {
+            const io_intro = `<?= $io_intro ?? null ?>`;
+            const fs_resource = `<?= $io_fs_resource ?? null ?>`;
+            const fs_info_op = `<?= $io_fs_info_op ?? null ?>`;
+            const io_stream = `<?= $io_stream ?? null ?>`;
+
+            let selected = null;
+            let previous = null;
+            let tabs = [
+                {title: 'Intro - io', content: io_intro},
+                {title: 'File System Resource', content: fs_resource},
+                {title: 'File Info & Operations', content: fs_info_op},
+                {title: 'Streams', content: io_stream},
+            ];
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 50% plus done
+        // topics done, files done, struct done, bindings done
+        function BasicsCtrl($scope) {
+            let tabs = [
+                {title: 'Fundamentals Intro  ✅', content: `<?= $bas_basics_intro ?? null ?>`},
+                {title: 'C Extensions  🏃‍♂️', content: `<?= $bas_extensions ?? null ?>`},
+                {title: 'Configuration  ✅', content: `<?= $bas_configuration ?? null ?>`},
+                {title: 'Performance  🏃‍♂️', content: `<?= $bas_performance ?? null ?>`},
+                {title: 'Operators  ✅', content: `<?= $bas_operators ?? null ?>`},
+                {title: 'Language Constructs  ✅', content: `<?= $bas_language_constructs ?? null ?>`},
+                {title: 'Control Structures ⚠', content: `<?= $bas_control_structures ?? null ?>`},
+                {title: 'Namespaces  ✅', content: `<?= $bas_namespaces ?? null ?>`},
+                // variables, constants, magic constants, super globals
+                {title: 'Identifiers ⚠', content: `<?= $bas_identifiers ?? null ?>`},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 50% plus done
+        // topics done, files done, struct done, bindings done
+        function ArraysCtrl($scope) {
+            let tabs = [
+                {title: 'Arrays Intro  ✅', content: `<?= $arr_array_intro ?? null ?>`},
+                {title: 'Merge & Compare  ✅', content: `<?= $arr_merge_compare ?? null ?>`},
+                // getting & testing
+                {title: 'Key Values  ✅', content: `<?= $arr_key_values ?? null ?>`},
+                {title: 'SPL  🏃‍♂️', content: `<?= $arr_spl ?? null ?>`},
+                {title: 'Sorting  ⚠', content: `<?= $arr_sorting ?? null ?>`},
+                // also include SPL
+                {title: 'Stack/Queue  ✅', content: `<?= $arr_stack_queue ?? null ?>`},
+                // ?
+                {title: 'Looping  ✅', content: `<?= $arr_looping ?? null ?>`},
+                // manipulation e.g. build, split, etc.
+                {title: 'Transforms  ✅', content: `<?= $arr_transforms ?? null ?>`},
+                // union, difference, intersects, list op
+                {title: 'Array Ops  ⚠', content: `<?= $arr_array_ops ?? null ?>`},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 0%
+        // topics done, files done, struct done, bindings done
+        function DataCtrl($scope, $log) {
+            let tabs = [
+                {title: 'Data Intro ⚠', content: `<?= $dat_data_intro ?? null ?>`},
+                {title: 'XML ⚠', content: `<?= $dat_xml ?? null ?>`},
+                {title: 'SOAP ⚠', content: `<?= $dat_soap ?? null ?>`},
+                {title: 'JSON ⚠', content: `<?= $dat_json ?? null ?>`},
+                {title: 'REST ⚠', content: `<?= $dat_rest ?? null ?>`},
+                {title: 'Data Structures ⚠', content: `<?= $dat_data_structures ?? null ?>`},
+                {title: 'Date & Time ⚠', content: `<?= $dat_date_time ?? null ?>`},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 65%
+        // topics done, files done, struct done, bindings done
+        function ErrorsCtrl($scope, $log) {
+            let tabs = [
+                {title: 'Errors Intro ✅', content: `<?= $err_errors_intro ?? null ?>`},
+                {title: 'Exceptions & Errors ✅', content: `<?= $err_error_types ?? null ?>`},
+                {title: 'Configuration ✅', content: `<?= $err_error_configuration ?? null ?>`},
+                {title: 'Error Functions 🏃‍♂️', content: `<?= $err_error_functions ?? null ?>`},
+                {title: 'Custom Errors 🏃‍♂️', content: `<?= $err_custom_errors ?? null ?>`},
+                {title: 'Try/Catch/Finally 🏃‍♂️', content: `<?= $err_try_catch_finally ?? null ?>`},
+                {title: 'Error Class  ✅', content: `<?= $err_error_class ?? null ?>`},
+                {title: 'Exception Class  ✅', content: `<?= $err_exception_class ?? null ?>`},
+                {title: 'Throwable ⚠', content: `<?= $err_throwable ?? null ?>`},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 70% ish done
+        // topics done, files done, struct done, bindings done
+        function FunctionsCtrl($scope, $log) {
+            let tabs = [
+                {title: 'Functions Intro ✅', content: `<?= $fp_intro ?? null ?>`},
+                // scatter op, optional args, nullable
+                {title: 'Parametric Rules ✅', content: `<?= $fp_parametric_rules ?? null ?>`},
+                {title: 'Lambdas & Closures ✅', content: `<?= $fp_lambdas_closures ?? null ?>`},
+                {title: 'Variadic & Dynamic ✅', content: `<?= $fp_variadic_dynamic ?? null ?>`},
+                {title: 'Callable Class ✅', content: `<?= $fp_callable_class ?? null ?>`},
+                {title: 'References ⚠', content: `<?= $fp_references ?? null ?>`},
+                {title: 'Scope ⚠', content: `<?= $fp_scope ?? null ?>`},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 0%
+        // topics done, files done, struct done, bindings done
+        function OOPCtrl($scope, $log) {
+            let tabs = [
+                {title: 'OOP Intro ⚠', content: `<?= $oop_intro ?? null ?>`},
+                {title: 'Reflection ⚠', content: `<?= $oop_reflection ?? null ?>`},
+                {title: 'Late Static Binding ⚠', content: `<?= $oop_late_static_binding ?? null ?>`},
+                {title: 'Auto Loading ⚠', content: `<?= $oop_auto_loading ?? null ?>`},
+                {title: 'Generators ⚠', content: `<?= $oop_generators ?? null ?>`},
+                {title: 'Anonymous Objects ⚠', content: `<?= $oop_anonymous_objects ?? null ?>`},
+                {title: 'Traits ⚠', content: `<?= $oop_traits ?? null ?>`},
+                // Types/Visibility/Construct/Destruct
+                {title: 'Basic OOP ⚠', content: `<?= $oop_basic_oop ?? null ?>`},
+                // Constants/Final/Abstracts/Interfaces
+                {title: 'Advanced OOP ⚠', content: `<?= $oop_advanced_oop ?? null ?>`},
+                {title: 'Inheritance ⚠', content: `<?= $oop_inheritance ?? null ?>`},
+                {title: 'Loop & Compare ⚠', content: `<?= $oop_loop_compare ?? null ?>`},
+                {title: 'Magic Methods ⚠', content: `<?= $oop_magic_methods ?? null ?>`},
+                {title: 'SPL ⚠', content: `<?= $oop_spl ?? null ?>`},
+                // Exceptions
+                {title: 'Try/Catch ⚠', content: `<?= $oop_try_catch ?? null ?>`},
+            ];
+
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 0%
+        // topics done, files done, struct done, bindings done
+        function SecurityCtrl($scope, $log) {
+            let tabs = [
+                {title: 'Intro ⚠', content: `<?= $sec_security_intro ?? null ?>`},
+                {title: 'XSS ⚠', content: `<?= $sec_xss ?? null ?>`},
+                {title: 'XSRF', content: `<?= $sec_xsrf ?? null ?>`},
+                {title: 'Session Security ⚠', content: `<?= $sec_session_security ?? null ?>`},
+                {title: 'File Upload Security ⚠', content: `<?= $sec_file_upload_security ?? null ?>`},
+                {title: 'Remote Code Injection ⚠', content: `<?= $sec_remote_code_injection ?? null ?>`},
+                {title: 'SQL Injection ⚠', content: `<?= $sec_sql_injection ?? null ?>`},
+                {title: 'Encryption & Hashing ⚠', content: `<?= $sec_encryption_hashing ?? null ?>`},
+                {title: 'Filter & Escape ⚠', content: `<?= $sec_filter_escape ?? null ?>`},
+                {title: 'Permissions ⚠', content: `<?= $sec_permissions ?? null ?>`},
+                {title: 'HTTPS ⚠', content: `<?= $sec_https ?? null ?>`}
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 0%
+        // topics done, files done, struct done, bindings done
+        function SqlCtrl($scope, $log) {
+            let tabs = [
+                {title: 'SQL DB Intro ⚠', content: `<?= $sql_db_intro ?? null ?>`},
+                {title: 'Keys & Indexes ⚠', content: `<?= $sql_keys_indexes ?? null ?>`},
+                {title: 'Data Types ⚠', content: `<?= $sql_data_types ?? null ?>`},
+                {title: 'Joins ⚠', content: `<?= $sql_joins ?? null ?>`},
+                {title: 'Data Definitions ⚠', content: `<?= $sql_data_definitions ?? null ?>`},
+                // transactions in PDO & SQL
+                {title: 'Transactions ⚠', content: `<?= $sql_transactions ?? null ?>`},
+                {title: 'Aggregates ⚠', content: `<?= $sql_aggregates ?? null ?>`},
+                {title: 'Grouping ⚠', content: `<?= $sql_grouping ?? null ?>`},
+                {title: 'Prepared Statements ⚠', content: `<?= $sql_prepared_statements ?? null ?>`},
+                {title: 'CRUD OPS ⚠', content: `<?= $sql_crud_ops ?? null ?>`},
+                {title: 'PDO Fetch Modes ⚠', content: `<?= $sql_pdo_fetch_modes ?? null ?>`},
+                {title: 'PDO Fetch Methods ⚠', content: `<?= $sql_pdo_fetch_methods ?? null ?>`},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 0%
+        // topics done, files done, struct done, bindingings done
+        function StringsCtrl($scope, $log) {
+            let selected = null;
+            let previous = null;
+
+            let tabs = [
+                {title: 'Strings Intro ⚠', content: `<?= $str_string_intro ?? null ?>`},
+                {title: 'Regex Engine Basics ⚠', content: `<?= $str_regex_engine_basics ?? null ?>`},
+                {title: 'Regex Engine Intermediate ⚠', content: `<?= $str_regex_engine_intermediate ?? null ?>`},
+                {title: 'Regex Engine Advanced ⚠', content: `<?= $str_regex_engine_advanced ?? null ?>`},
+                // strings to arrays/ds &back
+                {title: 'Transforms ⚠', content: `<?= $str_transforms ?? null ?>`},
+                {title: 'Encodes ⚠', content: `<?= $str_encodes ?? null ?>`},
+                {title: 'Search & Compare ⚠', content: `<?= $str_search_compare ?? null ?>`},
+                // substrings
+                {title: 'Extracting ⚠', content: `<?= $str_extracting ?? null ?>`},
+                {title: 'Phonetic ⚠', content: `<?= $str_phonetic ?? null ?>`},
+                {title: 'Formatting ⚠', content: `<?= $str_formatting ?? null ?>`},
+                {title: 'Heredoc/Nowdoc ⚠', content: `<?= $str_heredoc_nowdoc ?? null ?>`},
+                {title: 'Word & Char Count ⚠', content: `<?= $str_word_char_count ?? null ?>`},
+            ];
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 0%
+        // topics sort of done (needs more work)
+        function TestingCtrl($scope, $log) {
+            let tabs = [
+                {title: 'Testing Intro ⚠', content: 'hi world'},
+                {title: 'Data Providers ⚠', content: 'hi world'},
+                {title: 'Assertions ⚠', content: 'hi world'},
+                {title: 'Unit Tests ⚠', content: 'hi world'},
+                {title: 'Functional Tests ⚠', content: 'hi world'},
+                {title: 'End to End Tests ⚠', content: 'hi world'},
+                {title: 'Integration Tests ⚠', content: 'hi world'},
+                {title: 'Setups & Configs ⚠', content: 'hi world'},
+                {title: 'TDD ⚠', content: 'hi world'},
+                {title: 'BDD ⚠', content: 'hi world'},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+
+        // 0%
+        // topics done, files done, struct done, bindings done
+        function WebCtrl($scope, $log) {
+            let tabs = [
+                {title: 'Web Intro ⚠', content: `<?= $web_intro ?? null ?>`},
+                {title: 'HTTP Requests/Responses ⚠', content: `<?= $web_http_requests_responses ?? null ?>`},
+                {title: 'Sessions ⚠', content: `<?= $web_sessions ?? null ?>`},
+                {title: 'File Uploads ⚠', content: `<?= $web_file_uploads ?? null ?>`},
+                {title: 'HTML Forms ⚠', content: `<?= $web_html_forms ?? null ?>`},
+                {title: 'Super Globals ⚠', content: `<?= $web_super_globals ?? null ?>`},
+                {title: 'Network Functions ⚠', content: `<?= $web_network_functions ?? null ?>`},
+                {title: 'Encode & Decode ⚠', content: `<?= $web_encode_decode ?? null ?>`},
+                {title: 'HTTP Authentication ⚠', content: `<?= $web_http_authentication ?? null ?>`},
+                {title: 'Output Buffer ⚠', content: `<?= $web_output_buffer ?? null ?>`},
+            ];
+            let selected = null;
+            let previous = null;
+
+            $scope.tabs = tabs;
+            $scope.selectedIndex = 0;
+            $scope.$watch('selectedIndex', function (newVal, oldVal) {
+                previous = selected;
+                selected = tabs[newVal];
+                if (oldVal + 1 && !angular.equals(oldVal, newVal)) {
+                    $log.log('Goodbye ' + previous.title + '!');
+                }
+                if (newVal + 1 > 0) {
+                    $log.log('Hello ' + selected.title + '!');
+                }
+            });
+        }
+    })();
+</script>
+
+</body>
+</html>
